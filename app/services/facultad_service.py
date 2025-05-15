@@ -61,7 +61,7 @@ class FacultadService:
         :return: Objeto Facultad borrado o None si no se encuentra.
         """
 
-        facultad = FacultadRepository.buscar_por_id(id)
+        facultad = FacultadRepository.borrar_por_id(id)
         if not facultad:
             return None
         return facultad

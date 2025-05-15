@@ -50,7 +50,7 @@ class GradoService:
         :param id: ID del grado a borrar.
         :return: Objeto Grado borrado o None si no se encuentra.
         """
-        grado = GradoRepository.buscar_por_id(id)
+        grado = GradoRepository.borrar_por_id(id)
         if not grado:
             return None
         return grado

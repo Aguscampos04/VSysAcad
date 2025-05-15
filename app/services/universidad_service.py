@@ -51,7 +51,7 @@ class UniversidadService:
         :return: Objeto Universidad borrado o None si no se encuentra.
         """
 
-        universidad = UniversidadRepository.buscar_por_id(id)
+        universidad = UniversidadRepository.borrar_por_id(id)
         if not universidad:
             return None
         return universidad
