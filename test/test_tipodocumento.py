@@ -45,7 +45,7 @@ class TipoDocumentoTestCase(unittest.TestCase):
 
     def test_buscar_todos(self):
         tipodocumento1 = self.__nuevotipodoumento()
-        tipodocumento2 = self.__nuevotipodoumento()
+        tipodocumento2 = self.__nuevotipodoumento("DNI2", "23456789", "98765432", "CD123456")
         TipoDocumentoService.crear(tipodocumento1)
         TipoDocumentoService.crear(tipodocumento2)
         documentos = TipoDocumentoService.buscar_todos()
@@ -67,10 +67,10 @@ class TipoDocumentoTestCase(unittest.TestCase):
         tipodocumento_borrado = TipoDocumentoService.borrar_por_id(tipodpocumento.id)
         self.assertIsNone(tipodocumento_borrado)
 
-    def __nuevotipodoumento(self):
+    def __nuevotipodoumento(self, dni="DNI", libreta_civica="12345678", libreta_enrolamiento="87654321", pasaporte="AB123456"):
         tipodocumento = TipoDocumento()
-        tipodocumento.dni = "DNI"
-        tipodocumento.libreta_civica = "12345678"
-        tipodocumento.libreta_enrolamiento = "87654321"
-        tipodocumento.pasaporte = "AB123456"
+        tipodocumento.dni = dni
+        tipodocumento.libreta_civica = libreta_civica
+        tipodocumento.libreta_enrolamiento = libreta_enrolamiento
+        tipodocumento.pasaporte = pasaporte
         return tipodocumento
