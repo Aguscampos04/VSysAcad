@@ -61,10 +61,9 @@ class DepartamentoTestCase(unittest.TestCase):
     def test_borrar(self):
         departamento = self.__nuevodepartamento()
         DepartamentoService.crear(departamento)
-        db.session.delete(departamento)
-        db.session.commit()
-        departamento_borrado = DepartamentoService.borrar_por_id(departamento.id)
-        self.assertIsNone(departamento_borrado)
+        DepartamentoService.borrar_por_id(departamento.id)
+        resultado = DepartamentoService.buscar_por_id(departamento.id)
+        self.assertIsNone(resultado)
         
     def __nuevodepartamento(self , nombre = "Matematicas"):
         departamento = Departamento()

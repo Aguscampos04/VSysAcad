@@ -60,12 +60,12 @@ class TipoDocumentoTestCase(unittest.TestCase):
         self.assertEqual(tipodocumento_actualizado.dni, "DNI actualizado")
     
     def test_borrar(self):
-        tipodpocumento = self.__nuevotipodoumento()
-        TipoDocumentoService.crear(tipodpocumento)
-        db.session.delete(tipodpocumento)
-        db.session.commit()
-        tipodocumento_borrado = TipoDocumentoService.borrar_por_id(tipodpocumento.id)
-        self.assertIsNone(tipodocumento_borrado)
+        tipodocumento = self.__nuevotipodoumento()
+        TipoDocumentoService.crear(tipodocumento)
+        TipoDocumentoService.borrar_por_id(tipodocumento.id)
+        resultado = TipoDocumentoService.buscar_por_id(tipodocumento.id)
+        self.assertIsNone(resultado)
+
 
     def __nuevotipodoumento(self, dni="DNI", libreta_civica="12345678", libreta_enrolamiento="87654321", pasaporte="AB123456"):
         tipodocumento = TipoDocumento()
