@@ -60,12 +60,11 @@ class GradoTestCase(unittest.TestCase):
         grado.descripcion = "Descripción del segundo grado"
 
     def test_borrar_grado(self):
-        grado = self.__nuevogrado()
-        GradoService.crear_grado(grado)
-        db.session.delete(grado)
-        db.session.commit()
-        grado_borrado = GradoService.buscar_por_id(grado.id)
-        self.assertIsNone(grado_borrado)
+        universidad = self.__nuevogrado()
+        GradoService.crear_grado(universidad)
+        GradoService.borrar_por_id(universidad.id)
+        resultado = GradoService.buscar_por_id(universidad.id)
+        self.assertIsNone(resultado)
 
     def __nuevogrado(self):
         grado = Grado()

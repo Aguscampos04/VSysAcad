@@ -62,10 +62,9 @@ class UniversidadTestCase(unittest.TestCase):
     def test_borrar_universidad(self):
         universidad = self.__nuevauniversidad()
         UniversidadService.crear_universidad(universidad)
-        db.session.delete(universidad)
-        db.session.commit()
-        universidad_borrada = UniversidadService.borrar_por_id(universidad.id)
-        self.assertIsNone(universidad_borrada)
+        UniversidadService.borrar_por_id(universidad.id)
+        resultado = UniversidadService.buscar_por_id(universidad.id)
+        self.assertIsNone(resultado)
 
 
     def __nuevauniversidad(self):
