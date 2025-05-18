@@ -37,9 +37,9 @@ class DepartamentoTestCase(unittest.TestCase):
     def test_busqueda(self):
         departamento = self.__nuevodepartamento()
         DepartamentoService.crear(departamento)
-        DepartamentoService.buscar_por_id(departamento.id)
-        self.assertIsNotNone(departamento)
-        self.assertEqual(departamento.nombre, "Matematicas")
+        r=DepartamentoService.buscar_por_id(departamento.id)
+        self.assertIsNotNone(r)
+        self.assertEqual(r.nombre, "Matematicas")
         
 
     def test_buscar_todos(self):

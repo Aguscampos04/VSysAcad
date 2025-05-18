@@ -38,10 +38,10 @@ class GradoTestCase(unittest.TestCase):
     def test_grado_busqueda(self):
         grado = self.__nuevogrado()
         GradoService.crear_grado(grado)
-        GradoService.buscar_por_id(grado.id)
-        self.assertIsNotNone(grado)
-        self.assertEqual(grado.nombre, "Primero")
-        self.assertEqual(grado.descripcion, "Descripción del primer grado")
+        r=GradoService.buscar_por_id(grado.id)
+        self.assertIsNotNone(r)
+        self.assertEqual(r.nombre, "Primero")
+        self.assertEqual(r.descripcion, "Descripción del primer grado")
 
     
     def test_buscar_grados(self):

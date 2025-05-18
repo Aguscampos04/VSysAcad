@@ -38,10 +38,10 @@ class UniversidadTestCase(unittest.TestCase):
     def test_universidad_busqueda(self):
         universidad = self.__nuevauniversidad()
         UniversidadService.crear_universidad(universidad)
-        UniversidadService.buscar_por_id(universidad.id)
-        self.assertIsNotNone(universidad)
-        self.assertEqual(universidad.nombre, "Universidad Nacional")
-        self.assertEqual(universidad.sigla, "UN")
+        r=UniversidadService.buscar_por_id(universidad.id)
+        self.assertIsNotNone(r)
+        self.assertEqual(r.nombre, "Universidad Nacional")
+        self.assertEqual(r.sigla, "UN")
     
     def test_buscar_universidades(self):
         universidad1 = self.__nuevauniversidad()

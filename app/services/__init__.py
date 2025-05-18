@@ -3,3 +3,4 @@ from .grado_service import GradoService
 from .universidad_service import UniversidadService
 from .tipodocumento_service import TipoDocumentoService
 from .departamento_service import DepartamentoService
+from .alumno_service import AlumnoService
