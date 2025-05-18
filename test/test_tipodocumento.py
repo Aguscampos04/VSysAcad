@@ -38,10 +38,10 @@ class TipoDocumentoTestCase(unittest.TestCase):
     def test_busqueda(self):
         tipodocumento = self.__nuevotipodoumento()
         TipoDocumentoService.crear(tipodocumento)
-        TipoDocumentoService.buscar_por_id(tipodocumento.id)
-        self.assertIsNotNone(tipodocumento)
-        self.assertEqual(tipodocumento.dni, "DNI")
-        self.assertEqual(tipodocumento.libreta_civica, "12345678")
+        r=TipoDocumentoService.buscar_por_id(tipodocumento.id)
+        self.assertIsNotNone(r)
+        self.assertEqual(r.dni, "DNI")
+        self.assertEqual(r.libreta_civica, "12345678")
 
     def test_buscar_todos(self):
         tipodocumento1 = self.__nuevotipodoumento()
