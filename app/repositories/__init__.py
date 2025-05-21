@@ -4,4 +4,5 @@ from .universidad_repositorio import UniversidadRepository
 from .tipodocumento_repositorio import TipoDocumentoRepository
 from .departamento_repositorio import DepartamentoRepository
 from .alumno_repositorio import AlumnoRepository
+from .tipoespecialidad_repositorio import TipoEspecialidadRepository
 from .tipodedicacion_repositorio import TipoDedicacionRepository
