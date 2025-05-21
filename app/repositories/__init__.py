@@ -7,4 +7,5 @@ from .alumno_repositorio import AlumnoRepository
 from .especialidad_repositorio import EspecialidadRepository
 from .tipoespecialidad_repositorio import TipoEspecialidadRepository
 from .tipodedicacion_repositorio import TipoDedicacionRepository
+from .plan_repositorio import PlanRepository
 
