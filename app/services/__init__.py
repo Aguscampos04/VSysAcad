@@ -6,3 +6,5 @@ from .departamento_service import DepartamentoService
 from .alumno_service import AlumnoService
 from .especialidad_service import EspecialidadService
 from .tipoespecialidad_service import TipoEspecialidadService
+from .tipodedicacion_service import TipoDedicacionService
+
