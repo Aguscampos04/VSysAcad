@@ -28,7 +28,7 @@ class TipoDedicacionTestCase(unittest.TestCase):
 
     def test_crear(self):
         tipodedicacion = self.__nuevotipodedicacion()
-        tipodedicacion_service = TipoDedicacionService()
+        TipoDedicacionService.crear(tipodedicacion)
         self.assertIsNotNone(tipodedicacion)
         self.assertIsNotNone(tipodedicacion.id)
         self.assertGreaterEqual(tipodedicacion.id,1)
@@ -37,7 +37,7 @@ class TipoDedicacionTestCase(unittest.TestCase):
 
     def test_busqueda(self):
         tipodedicacion = self.__nuevotipodedicacion()
-        TipoDedicacionService.crear(TipoDedicacion)
+        TipoDedicacionService.crear(tipodedicacion)
         r=TipoDedicacionService.buscar_por_id(tipodedicacion.id)
         self.assertIsNotNone(r)
         self.assertEqual(r.nombre, "Dedicacion Completa")
@@ -49,7 +49,7 @@ class TipoDedicacionTestCase(unittest.TestCase):
         TipoDedicacionService.crear(tipodedicacion1)
         TipoDedicacionService.crear(tipodedicacion2)
         dedicaciones = TipoDedicacionService.buscar_todos()
-        self.asseertIsNotNone(dedicaciones)
+        self.assertIsNotNone(dedicaciones)
         self.assertEqual(len(dedicaciones), 2)
 
     def test_actualizar(self):

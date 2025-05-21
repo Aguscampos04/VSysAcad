@@ -8,6 +8,7 @@ from app.models.alumno import Alumno
 from app.services import AlumnoService
 from app.services import TipoDocumentoService
 from app import db
+
 class AlumnoTestCase(unittest.TestCase):
 
     def setUp(self):
