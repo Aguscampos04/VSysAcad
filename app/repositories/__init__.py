@@ -5,3 +5,4 @@ from .tipodocumento_repositorio import TipoDocumentoRepository
 from .departamento_repositorio import DepartamentoRepository
 from .alumno_repositorio import AlumnoRepository
 from .tipoespecialidad_repositorio import TipoEspecialidadRepository
+from .plan_repositorio import PlanRepository
