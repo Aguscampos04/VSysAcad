@@ -38,10 +38,10 @@ class FacultadTestCase(unittest.TestCase):
     def test_facultad_busqueda(self):
         facultad = self.__nuevafacultad()
         FacultadService.crear_facultad(facultad)    
-        FacultadService.buscar_por_id(facultad.id)
-        self.assertIsNotNone(facultad)
-        self.assertEqual(facultad.nombre, "Facultad de Ciencias")
-        self.assertEqual(facultad.abreviatura, "FCC")
+        r=FacultadService.buscar_por_id(facultad.id)
+        self.assertIsNotNone(r)
+        self.assertEqual(r.nombre, "Facultad de Ciencias")
+        self.assertEqual(r.abreviatura, "FCC")
 
 
     def test_buscar_facultades(self):
@@ -63,10 +63,9 @@ class FacultadTestCase(unittest.TestCase):
     def test_borrar_facultad(self):
         facultad = self.__nuevafacultad()
         FacultadService.crear_facultad(facultad)
-        db.session.delete(facultad)
-        db.session.commit()
-        facultad_borrada = FacultadService.borrar_por_id(facultad.id)
-        self.assertIsNone(facultad_borrada)
+        FacultadService.borrar_por_id(facultad.id)
+        resultado = FacultadService.buscar_por_id(facultad.id)
+        self.assertIsNone(resultado)
     
     def __nuevafacultad(self):
         facultad = Facultad()

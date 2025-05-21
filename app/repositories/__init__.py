@@ -1,1 +1,7 @@
 from .facultad_repositorio import FacultadRepository
+from .grado_repositorio import GradoRepository
+from .universidad_repositorio import UniversidadRepository
+from .tipodocumento_repositorio import TipoDocumentoRepository
+from .departamento_repositorio import DepartamentoRepository
+from .alumno_repositorio import AlumnoRepository
+from .tipodedicacion_repositorio import TipoDedicacionRepository
