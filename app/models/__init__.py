@@ -3,7 +3,6 @@ from .alumno import Alumno
 from .area import Area
 from .categoriacargo import CategoriaCargo
 from .departamento import Departamento
-from .especialidad import Especialidad
 from .facultad import Facultad
 from .grado import Grado
 from .grupo import Grupo
@@ -15,3 +14,4 @@ from .orientacion import Orientacion
 from .universidad import Universidad
 from .cargo import Cargo
 from .autoridad import Autoridad
+from .especialidad import Especialidad
