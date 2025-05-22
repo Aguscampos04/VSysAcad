@@ -43,14 +43,10 @@ class PlanService:
         plan_existente.observacion = plan.observacion
         return plan_existente
     
-    def borrar_por_id(self):
+    def borrar_por_id(id: int) -> Plan:
         """
         Borra un plan por su ID.
         :param id: ID del plan a borrar.
         :return: True si se borra correctamente, False si no se encuentra el plan.
         """
-        plan = PlanRepository.buscar_por_id(id)
-        if not plan:
-            return False
-        PlanRepository.borrar(plan.id)
-        return True
+        return PlanRepository.borrar_por_id(id)
