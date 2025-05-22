@@ -61,7 +61,7 @@ class PlanTestCase(unittest.TestCase):
         plan.fecha_fin = "2023-11-30"
         plan.observacion = "Observacion actualizada"
 
-    def borrar_por_id(self):
+    def test_borrar_por_id(self):
         plan = self.__nuevoplan()
         PlanService.crear(plan)
         PlanService.borrar_por_id(plan.id)
