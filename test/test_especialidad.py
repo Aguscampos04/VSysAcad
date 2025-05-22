@@ -2,8 +2,8 @@ import unittest
 import os
 from flask import current_app
 from app import create_app
-from app.models.especialidad import Especialidad
-from app.services import EspecialidadService
+from app.models import Especialidad, TipoEspecialidad
+from app.services import EspecialidadService, TipoEspecialidadService
 from app import db
 
 class EspecialidadTestCase(unittest.TestCase):
@@ -67,9 +67,15 @@ class EspecialidadTestCase(unittest.TestCase):
         resultado = EspecialidadService.buscar_por_id(especialidad.id)
         self.assertIsNone(resultado)
 
-    def __nuevaespecialidad(self):
+    def __nuevaespecialidad(self,nombre ="Matematicas", letra="A",observacion = "Observacion de prueba",
+                            nombree="Cardiologia"):
+        tipo_especialidad = TipoEspecialidad()
+        tipo_especialidad.nombre = nombree 
+        TipoEspecialidadService.crear(tipo_especialidad)
+
         especialidad = Especialidad()
-        especialidad.nombre = "Matematicas"
-        especialidad.letra = "A"
-        especialidad.observacion = "Observacion de prueba"
+        especialidad.nombre = nombre
+        especialidad.letra = letra
+        especialidad.observacion = observacion
+        especialidad.tipoespecialidad = tipo_especialidad
         return especialidad
