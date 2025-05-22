@@ -9,3 +9,4 @@ from .tipoespecialidad_service import TipoEspecialidadService
 from .tipodedicacion_service import TipoDedicacionService
 from .plan_service import PlanService   
 from .materia_service import MateriaService
+from .area_service import AreaService

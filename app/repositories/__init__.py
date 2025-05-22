@@ -9,3 +9,4 @@ from .tipoespecialidad_repositorio import TipoEspecialidadRepository
 from .tipodedicacion_repositorio import TipoDedicacionRepository
 from .plan_repositorio import PlanRepository
 from .materia_repositorio import MateriaRepository
+from .area_repositorio import AreaRepository
