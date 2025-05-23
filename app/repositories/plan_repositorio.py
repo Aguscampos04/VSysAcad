@@ -28,7 +28,7 @@ class PlanRepository:
         """
         return db.session.query(Plan).all()
     
-    def actualizar_plan(plan: Plan) -> Plan:
+    def actualizar(plan: Plan) -> Plan:
         """
         Actualiza un plan existente en la base de datos.
         :param plan: Instancia de Plan a actualizar.

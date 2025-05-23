@@ -33,7 +33,7 @@ class UniversidadRepository:
         return db.session.query(Universidad).all()
     
     @staticmethod
-    def actualizar_universidad(universidad) -> Universidad:
+    def actualizar(universidad) -> Universidad:
         """
         Actualiza una universidad existente en la base de datos.
         :param id: ID de la universidad a actualizar.

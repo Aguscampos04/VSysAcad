@@ -6,7 +6,7 @@ class FacultadService:
     Servicio para gestionar las facultades.
     """
     @staticmethod
-    def crear_facultad(facultad: Facultad):
+    def crear(facultad: Facultad):
         """
         Crea una nueva facultad en la base de datos.
         :param facultad: Facultad a crear.
@@ -32,7 +32,7 @@ class FacultadService:
         return FacultadRepository.buscar_todos()
     
     @staticmethod
-    def actualizar_facultad(id: int, facultad: Facultad) -> Facultad:
+    def actualizar(id: int, facultad: Facultad) -> Facultad:
         """
         Actualiza una facultad existente en la base de datos.
         :param id: ID de la facultad a actualizar.

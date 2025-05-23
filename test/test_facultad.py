@@ -27,42 +27,42 @@ class FacultadTestCase(unittest.TestCase):
         self.assertEqual(facultad.abreviatura, "FCC")
         self.assertEqual(facultad.directorio, "/facultad/ciencias")
 
-    def test_crear_facultad(self):
+    def test_crear(self):
         facultad = self.__nuevafacultad()
-        FacultadService.crear_facultad(facultad)
+        FacultadService.crear(facultad)
         self.assertIsNotNone(facultad)
         self.assertIsNotNone(facultad.id)
         self.assertGreaterEqual(facultad.id, 1)
         self.assertEqual(facultad.nombre, "Facultad de Ciencias")
 
-    def test_facultad_busqueda(self):
+    def test_busqueda(self):
         facultad = self.__nuevafacultad()
-        FacultadService.crear_facultad(facultad)    
+        FacultadService.crear(facultad)    
         r=FacultadService.buscar_por_id(facultad.id)
         self.assertIsNotNone(r)
         self.assertEqual(r.nombre, "Facultad de Ciencias")
         self.assertEqual(r.abreviatura, "FCC")
 
 
-    def test_buscar_facultades(self):
+    def test_buscar_todos(self):
         facultad1 = self.__nuevafacultad()
         facultad2 = self.__nuevafacultad()
-        FacultadService.crear_facultad(facultad1)
-        FacultadService.crear_facultad(facultad2)
+        FacultadService.crear(facultad1)
+        FacultadService.crear(facultad2)
         facultades = FacultadService.buscar_todos()
         self.assertIsNotNone(facultades)
         self.assertEqual(len(facultades), 2)
 
-    def test_actualizar_facultad(self):
+    def test_actualizar(self):
         facultad= self.__nuevafacultad()
-        FacultadService.crear_facultad(facultad)
+        FacultadService.crear(facultad)
         facultad.nombre = "Facultad de Ciencias Actualizada"
-        facultad_actualizada = FacultadService.actualizar_facultad(facultad.id, facultad)
+        facultad_actualizada = FacultadService.actualizar(facultad.id, facultad)
         self.assertEqual(facultad_actualizada.nombre, "Facultad de Ciencias Actualizada")
 
-    def test_borrar_facultad(self):
+    def test_borrar(self):
         facultad = self.__nuevafacultad()
-        FacultadService.crear_facultad(facultad)
+        FacultadService.crear(facultad)
         FacultadService.borrar_por_id(facultad.id)
         resultado = FacultadService.buscar_por_id(facultad.id)
         self.assertIsNone(resultado)
