@@ -50,7 +50,7 @@ class AlumnoTestCase(unittest.TestCase):
 
     def test_buscar_todos(self):
         alumno1 = self.__nuevoalumno()
-        alumno2 = self.__nuevoalumno(nombre="Pedro", apellido="Gómez", nrodocumento="12345678", tipo_documento=None, fecha_nacimiento=date(1995,5,5), sexo="M", nro_legajo=654321, fecha_ingreso=date(2021,1,1), dni= "na", libreta_civica="l", libreta_enrolamiento="aci", pasaporte="nacn")
+        alumno2 = self.__nuevoalumno(nombre="Pedro", apellido="Gómez", nrodocumento="12345678", tipo_documento=None, fecha_nacimiento=date(1995,5,5), sexo="M", nro_legajo=654321, fecha_ingreso=date(2021,1,1), dni= 50291002, libreta_civica="l", libreta_enrolamiento="aci", pasaporte="nacn")
         AlumnoService.crear(alumno1)
         AlumnoService.crear(alumno2)
         alumnos = AlumnoService.buscar_todos()
@@ -74,7 +74,7 @@ class AlumnoTestCase(unittest.TestCase):
 
 
     def __nuevoalumno(self, nombre="Juan", apellido="Pérez", nrodocumento="46291002" ,tipo_documento=None, fecha_nacimiento=date(1990,1,1), sexo="M", nro_legajo=123456, fecha_ingreso=date(2020,1,1),
-                      dni= "nacnal", libreta_civica="nacional", libreta_enrolamiento="naci", pasaporte="nacnal"):
+                      dni= 46291002, libreta_civica="nacional", libreta_enrolamiento="naci", pasaporte="nacnal"):
         tipo_documento = TipoDocumento()
         tipo_documento.pasaporte = pasaporte
         tipo_documento.dni = dni
