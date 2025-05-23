@@ -33,7 +33,7 @@ class FacultadRepository:
         return db.session.query(Facultad).all()
     
     @staticmethod
-    def actualizar_facultad(facultad) -> Facultad:
+    def actualizar(facultad) -> Facultad:
         """
         Actualiza una facultad existente en la base de datos.
         :param id: ID de la facultad a actualizar.

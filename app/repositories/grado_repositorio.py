@@ -32,7 +32,7 @@ class GradoRepository:
     
 
     @staticmethod
-    def actualizar_grado(grado) -> Grado:
+    def actualizar(grado) -> Grado:
         """
         Actualiza un grado en la base de datos.
         :param grado: Objeto Grado a actualizar.

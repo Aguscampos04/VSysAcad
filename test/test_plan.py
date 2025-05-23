@@ -53,7 +53,7 @@ class PlanTestCase(unittest.TestCase):
         self.assertIsNotNone(planes)
         self.assertEqual(len(planes), 2)
     
-    def test_actualizar_plan(self):
+    def test_actualizar(self):
         plan= self.__nuevoplan()
         PlanService.crear(plan)
         plan.nombre = "Plan Actualizado"
