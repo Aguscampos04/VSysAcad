@@ -10,3 +10,4 @@ from .plan_service import PlanService
 from .materia_service import MateriaService
 from .area_service import AreaService
 from .especialidad_service import EspecialidadService
+from.categoriacargo_service import CategoriaCargoService
