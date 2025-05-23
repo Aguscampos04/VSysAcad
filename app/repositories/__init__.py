@@ -11,3 +11,4 @@ from .materia_repositorio import MateriaRepository
 from .area_repositorio import AreaRepository
 from .especialidad_repositorio import EspecialidadRepository
 from .categoriacargo_repositorio import CategoriaCargoRepository
+from .grupo_repositorio import GrupoRepository
