@@ -25,7 +25,7 @@ class EspecialidadTestCase(unittest.TestCase):
         self.assertIsNotNone(especialidad.nombre)
         self.assertEqual(especialidad.nombre, "Matematicas")
         self.assertEqual(especialidad.letra, "A")
-        self.assertEqual(especialidad.observacion, "Observacion de prueba")
+        self.assertEqual(especialidad.tipoespecialidad.nombre, "Cardiologia")
 
 
     def test_crear(self):
@@ -35,6 +35,7 @@ class EspecialidadTestCase(unittest.TestCase):
         self.assertIsNotNone(especialidad.id)
         self.assertGreaterEqual(especialidad.id,1)
         self.assertEqual(especialidad.nombre, "Matematicas")
+        self.assertEqual(especialidad.tipoespecialidad.nombre, "Cardiologia")
 
     def test_busqueda(self):
         especialidad = self.__nuevaespecialidad()
