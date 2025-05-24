@@ -68,11 +68,7 @@ class PlanTestCase(unittest.TestCase):
         r= PlanService.buscar_por_id(plan.id)
         self.assertIsNone(r)
 
-        
-        
-
-    
-
+#TODO CAMBIAR FECHAS A DATE
     def __nuevoplan(self, nombre= "Plan A", fecha_inicio= "2023-01-01", fecha_fin= "2023-12-31", observacion= "Observacion de prueba"):
         plan = Plan()
         plan.nombre = nombre

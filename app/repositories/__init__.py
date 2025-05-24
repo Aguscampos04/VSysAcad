@@ -6,10 +6,11 @@ from .departamento_repositorio import DepartamentoRepository
 from .alumno_repositorio import AlumnoRepository
 from .tipoespecialidad_repositorio import TipoEspecialidadRepository
 from .tipodedicacion_repositorio import TipoDedicacionRepository
-from .plan_repositorio import PlanRepository
-from .materia_repositorio import MateriaRepository
 from .area_repositorio import AreaRepository
 from .especialidad_repositorio import EspecialidadRepository
+from .plan_repositorio import PlanRepository
+from .materia_repositorio import MateriaRepository
 from .categoriacargo_repositorio import CategoriaCargoRepository
 from .grupo_repositorio import GrupoRepository
 from .cargo_repositorio import CargoRepository
+from .orientacion_repositorio import OrientacionRepository

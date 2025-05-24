@@ -6,12 +6,12 @@ from .departamento import Departamento
 from .facultad import Facultad
 from .grado import Grado
 from .grupo import Grupo
-from .materia import Materia
-from .plan import Plan
 from .tipodedicacion import TipoDedicacion
 from .tipoespecialidad import TipoEspecialidad
-from .orientacion import Orientacion
 from .universidad import Universidad
 from .cargo import Cargo
 from .autoridad import Autoridad
 from .especialidad import Especialidad
+from .plan import Plan
+from .materia import Materia
+from .orientacion import Orientacion
