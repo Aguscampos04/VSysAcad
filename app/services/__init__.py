@@ -12,3 +12,4 @@ from .area_service import AreaService
 from .especialidad_service import EspecialidadService
 from.categoriacargo_service import CategoriaCargoService
 from .grupo_service import GrupoService
+from .cargo_service import CargoService
