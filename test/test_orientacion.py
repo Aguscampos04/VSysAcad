@@ -47,8 +47,31 @@ class OrientacionTestCase(unittest.TestCase):
         self.assertIsNotNone(r)
         self.assertEqual(r.nombre, "Orientacion A")
 
+    def test_buscar_todos(self):
+        orientacion1 = self.__nuevaorientacion()
+        orientacion2 = self.__nuevaorientacion(nombre="Orientacion B", codigo="SQL2")
+        OrientacionService.crear(orientacion1)
+        OrientacionService.crear(orientacion2)
+        orientaciones = OrientacionService.buscar_todos()
+        self.assertIsNotNone(orientaciones)
+        self.assertGreaterEqual(len(orientaciones), 2)
 
-    def __nuevaorientacion(self, codigo= "SQL"):
+    def test_actualizar(self):
+        orientacion = self.__nuevaorientacion()
+        OrientacionService.crear(orientacion)
+        orientacion.nombre = "Orientacion Actualizada"
+        orientacion_actualizada = OrientacionService.actualizar(orientacion.id, orientacion)
+        self.assertEqual(orientacion_actualizada.nombre, "Orientacion Actualizada")
+
+    def test_borrar(self):
+        orientacion = self.__nuevaorientacion()
+        OrientacionService.crear(orientacion)
+        OrientacionService.borrar_por_id(orientacion.id)
+        resultado = OrientacionService.buscar_por_id(orientacion.id)
+        self.assertIsNone(resultado)
+
+
+    def __nuevaorientacion(self, codigo="SQL", nombre="Orientacion A"):
         tipo_especialidad = TipoEspecialidad()
         tipo_especialidad.nombre = "Tipo 1"
         TipoEspecialidadService.crear(tipo_especialidad)
@@ -71,7 +94,7 @@ class OrientacionTestCase(unittest.TestCase):
         MateriaService.crear(materia)
 
         orientacion = Orientacion()
-        orientacion.nombre = "Orientacion A"
+        orientacion.nombre = nombre
         orientacion.especialidad = especialidad
         orientacion.plan = plan
         orientacion.materia = materia
