@@ -1,4 +1,3 @@
-from .facultad_service import FacultadService
 from .grado_service import GradoService
 from .universidad_service import UniversidadService
 from .tipodocumento_service import TipoDocumentoService
@@ -14,3 +13,4 @@ from.categoriacargo_service import CategoriaCargoService
 from .grupo_service import GrupoService
 from .cargo_service import CargoService
 from .orientacion_service import OrientacionService
+from .facultad_service import FacultadService
