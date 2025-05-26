@@ -1,4 +1,3 @@
-from .facultad_repositorio import FacultadRepository
 from .grado_repositorio import GradoRepository
 from .universidad_repositorio import UniversidadRepository
 from .tipodocumento_repositorio import TipoDocumentoRepository
@@ -14,3 +13,4 @@ from .categoriacargo_repositorio import CategoriaCargoRepository
 from .grupo_repositorio import GrupoRepository
 from .cargo_repositorio import CargoRepository
 from .orientacion_repositorio import OrientacionRepository
+from .facultad_repositorio import FacultadRepository
