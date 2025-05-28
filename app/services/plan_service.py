@@ -29,7 +29,7 @@ class PlanService:
         return PlanRepository.buscar_todos()
     
     @staticmethod
-    def actualizar(plan: Plan):
+    def actualizar(id : int, plan: Plan):
         """
         Actualiza un plan existente en la base de datos.
         :param plan: Instancia de Plan a actualizar.

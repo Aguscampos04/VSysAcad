@@ -59,10 +59,8 @@ class MateriaTestCase(unittest.TestCase):
         materia = self.__nuevamateria()
         MateriaService.crear(materia)
         materia.nombre = "Matematicas Avanzadas"
-        materia.codigo = "MAT102"
-        materia.observacion = "Observacion actualizada"
-
-    # TODO completar7actualizar test
+        materia_actualizada = MateriaService.actualizar(materia.id, materia)
+        self.assertEqual(materia_actualizada.nombre, "Matematicas Avanzadas")
 
     def test_borrar_por_id(self):
         materia = self.__nuevamateria()

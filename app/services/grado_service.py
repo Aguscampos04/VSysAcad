@@ -1,6 +1,7 @@
 from app.models import Grado
 from app.repositories import GradoRepository
 
+
 class GradoService:
 
     @staticmethod
@@ -11,7 +12,7 @@ class GradoService:
         :return: Objeto Cargo creado.
         """
         GradoRepository.crear(grado)
-    
+
     @staticmethod
     def buscar_por_id(id: int) -> Grado:
         """
@@ -20,7 +21,7 @@ class GradoService:
         :return: Objeto Grado encontrado o None si no se encuentra.
         """
         return GradoRepository.buscar_por_id(id)
-    
+
     @staticmethod
     def buscar_todos() -> list[Grado]:
         """
@@ -28,9 +29,9 @@ class GradoService:
         :return: Lista de objetos Grado.
         """
         return GradoRepository.buscar_todos()
-    
+
     @staticmethod
-    def actualizar(grado: Grado):
+    def actualizar(id: int, grado: Grado):
         """
         Actualiza un grado en la base de datos.
         :param grado: Objeto Grado a actualizar.
@@ -39,10 +40,10 @@ class GradoService:
         grado_existente = GradoRepository.buscar_por_id(grado.id)
         if not grado_existente:
             return None
-        grado_existente.nombre = grado.nombre       
+        grado_existente.nombre = grado.nombre
         grado_existente.descripcion = grado.descripcion
         return grado_existente
-    
+
     @staticmethod
     def borrar_por_id(id: int) -> Grado:
         """
