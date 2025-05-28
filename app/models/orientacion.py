@@ -1,14 +1,11 @@
 from dataclasses import dataclass
-from datetime import date
-from app.models.especialidad import Especialidad
-from app.models.plan import Plan
-from app.models.materia import Materia
+from app.models import Especialidad, Plan, Materia
 from app import db
 
 @dataclass(init=False, repr=True, eq=True)
 class Orientacion(db.Model):
     __tablename__ = "orientaciones"
-    id = db.Column(db.Integer, primary_key=True,auto_increment=True)
+    id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     nombre = db.Column(db.String(50), auto_increment=True)
     especialidad_id = db.Column(db.Integer, db.ForeignKey('especialidades.id'), nullable=False)
     especialidad = db.relationship('Especialidad', backref='orientaciones', lazy=True)
