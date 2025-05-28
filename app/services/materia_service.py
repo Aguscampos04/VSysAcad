@@ -24,7 +24,7 @@ class MateriaService:
         :return: Objeto Materia encontrado o None si no se encuentra.
         """
         return MateriaRepository.buscar_por_id(id)
-    
+
     @staticmethod
     def buscar_todos() -> list[Materia]:
         """
@@ -32,9 +32,9 @@ class MateriaService:
         :return: Lista de objetos Materia encontrados.
         """
         return MateriaRepository.buscar_todos()
-    
+
     @staticmethod
-    def actualizar(materia: Materia): 
+    def actualizar(id: int, materia: Materia):
         """
         Actualiza un objeto Materia en la base de datos.
         :param materia: Objeto Materia a actualizar.
@@ -46,8 +46,8 @@ class MateriaService:
         materia_existente.nombre = materia.nombre
         materia_existente.codigo = materia.codigo
         materia_existente.observacion = materia.observacion
-        return materia_existente       
-    
+        return materia_existente
+
     @staticmethod
     def borrar_por_id(id: int) -> Materia:
         """
