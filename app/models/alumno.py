@@ -6,7 +6,7 @@ from app import db
 @dataclass(init=False, repr=True, eq=True)
 class Alumno(db.Model):
     __tablename__ = 'alumnos'
-    id = db.Column(db.Integer, primary_key=True,auto_increment=True)
+    id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     nombre = db.Column(db.String(50), nullable=False) 
     apellido = db.Column(db.String(50), nullable=False)
     nrodocumento= db.Column(db.String(50), nullable=False)
