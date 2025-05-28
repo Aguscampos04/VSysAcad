@@ -6,6 +6,7 @@ from app.models.materia import Materia
 from app.services import MateriaService
 from app import db
 
+
 class MateriaTestCase(unittest.TestCase):
     def setUp(self):
         os.environ['FLASK_CONTEXT'] = 'testing'
@@ -27,7 +28,6 @@ class MateriaTestCase(unittest.TestCase):
         self.assertEqual(materia.codigo, "MAT101")
         self.assertEqual(materia.observacion, "Observacion de prueba")
 
-    
     def test_crear(self):
         materia = self.__nuevamateria()
         MateriaService.crear(materia)
@@ -35,8 +35,6 @@ class MateriaTestCase(unittest.TestCase):
         self.assertIsNotNone(materia.id)
         self.assertGreaterEqual(materia.id, 1)
         self.assertEqual(materia.nombre, "Matematicas")
-        
-        
 
     def test_busqueda(self):
         materia = self.__nuevamateria()
@@ -49,14 +47,14 @@ class MateriaTestCase(unittest.TestCase):
 
     def test_buscar_todos(self):
         materia1 = self.__nuevamateria()
-        materia2 = self.__nuevamateria("Historia", "HIS101", "Historia de prueba")
+        materia2 = self.__nuevamateria(
+            "Historia", "HIS101", "Historia de prueba")
         MateriaService.crear(materia1)
         MateriaService.crear(materia2)
-        materias =  MateriaService.buscar_todos()
+        materias = MateriaService.buscar_todos()
         self.assertIsNotNone(materias)
         self.assertEqual(len(materias), 2)
 
-    
     def test_actualizar(self):
         materia = self.__nuevamateria()
         MateriaService.crear(materia)
@@ -64,15 +62,14 @@ class MateriaTestCase(unittest.TestCase):
         materia.codigo = "MAT102"
         materia.observacion = "Observacion actualizada"
 
-    
+    # TODO completar7actualizar test
+
     def test_borrar_por_id(self):
         materia = self.__nuevamateria()
         MateriaService.crear(materia)
         MateriaService.borrar_por_id(materia.id)
         r = MateriaService.buscar_por_id(materia.id)
         self.assertIsNone(r)
-        
-
 
     def __nuevamateria(self, nombre="Matematicas", codigo="MAT101", observacion="Observacion de prueba"):
         materia = Materia()
@@ -80,5 +77,3 @@ class MateriaTestCase(unittest.TestCase):
         materia.codigo = codigo
         materia.observacion = observacion
         return materia
-    
- 
