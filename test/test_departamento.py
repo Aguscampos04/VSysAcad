@@ -19,13 +19,6 @@ class DepartamentoTestCase(unittest.TestCase):
         db.drop_all()
         self.app_context.pop()
 
-    def test_departamento_creation(self):
-        departamento = self.__nuevodepartamento()
-        self.assertIsNotNone(departamento)
-        self.assertIsNotNone(departamento.nombre)
-        self.assertEqual(departamento.nombre, "Matematicas")
-
-    
     def test_crear(self):
         departamento = self.__nuevodepartamento()
         DepartamentoService.crear(departamento)

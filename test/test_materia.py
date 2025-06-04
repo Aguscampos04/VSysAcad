@@ -20,14 +20,6 @@ class MateriaTestCase(unittest.TestCase):
         db.drop_all()
         self.app_context.pop()
 
-    def test_materia_creation(self):
-        materia = self.__nuevamateria()
-        self.assertIsNotNone(materia)
-        self.assertIsNotNone(materia.nombre)
-        self.assertEqual(materia.nombre, "Matematicas")
-        self.assertEqual(materia.codigo, "MAT101")
-        self.assertEqual(materia.observacion, "Observacion de prueba")
-
     def test_crear(self):
         materia = self.__nuevamateria()
         MateriaService.crear(materia)

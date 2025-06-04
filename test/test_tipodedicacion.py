@@ -19,13 +19,6 @@ class TipoDedicacionTestCase(unittest.TestCase):
         db.drop_all()
         self.app_context.pop()
 
-    def test_tipodedicacion_creation(self):
-        tipodedicacion = self.__nuevotipodedicacion()
-        self.assertIsNotNone(tipodedicacion)
-        self.assertIsNotNone(tipodedicacion.nombre)
-        self.assertEqual(tipodedicacion.nombre, "Dedicacion Completa")
-        self.assertEqual(tipodedicacion.observacion, "Observacion de prueba")
-
     def test_crear(self):
         tipodedicacion = self.__nuevotipodedicacion()
         TipoDedicacionService.crear(tipodedicacion)

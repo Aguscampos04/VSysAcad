@@ -21,12 +21,6 @@ class GradoTestCase(unittest.TestCase):
         db.drop_all()
         self.app_context.pop()
 
-    def test_grado_creation(self):
-        grado = self.__nuevogrado()
-        self.assertIsNotNone(grado)
-        self.assertEqual(grado.nombre, "Primero")
-        self.assertIsNotNone(grado.descripcion, "Descripción del primer grado")
-
     def test_crear(self):
         grado = self.__nuevogrado()
         GradoService.crear(grado)

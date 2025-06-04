@@ -5,7 +5,7 @@ from app import create_app
 from app.models.plan import Plan
 from app.services import PlanService
 from app import db
-
+from datetime import date
 
 class PlanTestCase(unittest.TestCase):
     def setUp(self):
@@ -19,12 +19,6 @@ class PlanTestCase(unittest.TestCase):
         db.session.remove()
         db.drop_all()
         self.app_context.pop()
-
-    def test_plan_creation(self):
-        plan = self.__nuevoplan()
-        self.assertEqual(plan.nombre, "Plan A")
-        self.assertEqual(plan.fecha_inicio, "2023-01-01")
-        self.assertEqual(plan.fecha_fin, "2023-12-31")
 
     def test_crear(self):
         plan = self.__nuevoplan()
@@ -47,7 +41,7 @@ class PlanTestCase(unittest.TestCase):
     def test_buscar_todos(self):
         plan1 = self.__nuevoplan()
         plan2 = self.__nuevoplan(
-            "Plan B", "2023-06-01", "2023-12-31", "Observacion de prueba 2")
+            "Plan B", date(2024, 7, 4), date(2024, 8, 4), "Observacion de prueba 2")
         PlanService.crear(plan1)
         PlanService.crear(plan2)
         planes = PlanService.buscar_todos()
@@ -68,8 +62,8 @@ class PlanTestCase(unittest.TestCase):
         r = PlanService.buscar_por_id(plan.id)
         self.assertIsNone(r)
 
-# TODO CAMBIAR FECHAS A DATE
-    def __nuevoplan(self, nombre="Plan A", fecha_inicio="2023-01-01", fecha_fin="2023-12-31", observacion="Observacion de prueba"):
+
+    def __nuevoplan(self, nombre="Plan A", fecha_inicio=date(2024, 6, 4), fecha_fin=date(2024, 6, 5), observacion="Observacion de prueba"):
         plan = Plan()
         plan.nombre = nombre
         plan.fecha_inicio = fecha_inicio

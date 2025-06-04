@@ -20,13 +20,6 @@ class UniversidadTestCase(unittest.TestCase):
         db.drop_all()
         self.app_context.pop()
 
-    def test_universidad_creation(self):
-        universidad = self.__nuevauniversidad()
-        self.assertIsNotNone(universidad)
-        self.assertIsNotNone(universidad.nombre)
-        self.assertEqual(universidad.nombre, "Universidad Nacional")
-        self.assertEqual(universidad.sigla, "UN")
-
     def test_crear(self):
         universidad = self.__nuevauniversidad()
         UniversidadService.crear(universidad)

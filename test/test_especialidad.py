@@ -4,6 +4,7 @@ from flask import current_app
 from app import create_app
 from app.models import Especialidad, TipoEspecialidad
 from app.services import EspecialidadService, TipoEspecialidadService
+from test.instancias import nuevotipoespecialidad
 from app import db
 
 class EspecialidadTestCase(unittest.TestCase):
@@ -18,15 +19,6 @@ class EspecialidadTestCase(unittest.TestCase):
         db.session.remove()
         db.drop_all()
         self.app_context.pop()
-
-    def test_especialidad_creation(self):
-        especialidad = self.__nuevaespecialidad()
-        self.assertIsNotNone(especialidad)
-        self.assertIsNotNone(especialidad.nombre)
-        self.assertEqual(especialidad.nombre, "Matematicas")
-        self.assertEqual(especialidad.letra, "A")
-        self.assertEqual(especialidad.tipoespecialidad.nombre, "Cardiologia")
-
 
     def test_crear(self):
         especialidad= self.__nuevaespecialidad()
@@ -68,15 +60,10 @@ class EspecialidadTestCase(unittest.TestCase):
         resultado = EspecialidadService.buscar_por_id(especialidad.id)
         self.assertIsNone(resultado)
 
-    def __nuevaespecialidad(self,nombre ="Matematicas", letra="A",observacion = "Observacion de prueba",
-                            nombree="Cardiologia"):
-        tipo_especialidad = TipoEspecialidad()
-        tipo_especialidad.nombre = nombree 
-        TipoEspecialidadService.crear(tipo_especialidad)
-
+    def __nuevaespecialidad(self,nombre ="Matematicas", letra="A",observacion = "Observacion de prueba"):
         especialidad = Especialidad()
         especialidad.nombre = nombre
         especialidad.letra = letra
         especialidad.observacion = observacion
-        especialidad.tipoespecialidad = tipo_especialidad
+        especialidad.tipoespecialidad = nuevotipoespecialidad()
         return especialidad

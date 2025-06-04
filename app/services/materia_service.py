@@ -34,7 +34,7 @@ class MateriaService:
         return MateriaRepository.buscar_todos()
 
     @staticmethod
-    def actualizar(id: int, materia: Materia):
+    def actualizar(id: int, materia: Materia) -> Materia:
         """
         Actualiza un objeto Materia en la base de datos.
         :param materia: Objeto Materia a actualizar.

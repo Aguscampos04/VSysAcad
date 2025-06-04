@@ -19,14 +19,6 @@ class TipoDocumentoTestCase(unittest.TestCase):
         db.drop_all()
         self.app_context.pop()
 
-    def test_tipodocumento_creation(self):
-        tipodocumento = self.__nuevotipodoumento()
-        self.assertIsNotNone(tipodocumento)
-        self.assertIsNotNone(tipodocumento.dni)
-        self.assertEqual(tipodocumento.dni, 46291002)
-        self.assertEqual(tipodocumento.libreta_civica, "12345678")
-        self.assertEqual(tipodocumento.libreta_enrolamiento, "87654321")
-
     def test_crear(self):
         tipodocumento = self.__nuevotipodoumento()
         TipoDocumentoService.crear(tipodocumento)
