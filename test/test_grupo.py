@@ -18,13 +18,7 @@ class GrupoTestCase(unittest.TestCase):
         db.session.remove()
         db.drop_all()
         self.app_context.pop()
-
-    def test_grupo_creation(self):
-        grupo = self.__nuevogrupo()
-        self.assertIsNotNone(grupo)
-        self.assertIsNotNone(grupo.nombre)
-        self.assertEqual(grupo.nombre, "Grupo A")
-
+        
     def test_busqueda(self):
         grupo = self.__nuevogrupo()
         GrupoService.crear(grupo)

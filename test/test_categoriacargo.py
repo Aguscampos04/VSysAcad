@@ -19,12 +19,6 @@ class CategoriaCargoTestCase(unittest.TestCase):
         db.drop_all()
         self.app_context.pop()
 
-    def test_categoriacargo_creation(self):
-        categoria = self.__nuevacategoria()
-        self.assertIsNotNone(categoria)
-        self.assertIsNotNone(categoria.nombre)
-        self.assertEqual(categoria.nombre, "Docente")
-
     def test_crear(self):
         categoria = self.__nuevacategoria()
         CategoriaCargoService.crear(categoria)

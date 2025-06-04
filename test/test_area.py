@@ -19,12 +19,6 @@ class AreaTestCase(unittest.TestCase):
         db.drop_all()
         self.app_context.pop()
 
-    def test_area_creation(self):
-        area = self.__nuevaarea()
-        self.assertIsNotNone(area)
-        self.assertIsNotNone(area.nombre)
-        self.assertEqual(area.nombre, "matematica")
-    
     def test_crear(self):
         area = self.__nuevaarea()
         AreaService.crear(area)

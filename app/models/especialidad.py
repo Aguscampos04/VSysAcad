@@ -9,5 +9,6 @@ class Especialidad(db.Model):
     nombre = db.Column(db.String(100), nullable=False)
     letra = db.Column(db.String(1), nullable=False)
     observacion = db.Column(db.String(255), nullable=True)
+    
     tipoespecialidad_id = db.Column(db.Integer, db.ForeignKey('tipoespecialidades.id'), nullable=False)
     tipoespecialidad = db.relationship('TipoEspecialidad', backref='especialidades', lazy=True)

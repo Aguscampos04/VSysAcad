@@ -21,14 +21,6 @@ class TipoEspecialidadTestCase(unittest.TestCase):
         db.drop_all()
         self.app_context.pop()
 
-    def test_tipoespecialidad_creation(self):
-        tipoespecialidad = self.__nuevotipoespecialidad()
-        self.assertIsNotNone(tipoespecialidad)
-        self.assertIsNotNone(tipoespecialidad.nombre, "Cardiología")
-        self.assertIsNotNone(tipoespecialidad.nivel, "Avanzado")
-        
-
-
     def test_crear(self):
         tipoespecialidad = self.__nuevotipoespecialidad()
         TipoEspecialidadService.crear(tipoespecialidad)

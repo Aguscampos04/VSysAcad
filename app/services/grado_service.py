@@ -31,7 +31,7 @@ class GradoService:
         return GradoRepository.buscar_todos()
 
     @staticmethod
-    def actualizar(id: int, grado: Grado):
+    def actualizar(id: int, grado: Grado) -> Grado:
         """
         Actualiza un grado en la base de datos.
         :param grado: Objeto Grado a actualizar.

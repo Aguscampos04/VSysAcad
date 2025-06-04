@@ -2,9 +2,9 @@ import unittest
 import os
 from flask import current_app
 from app import create_app
-from app.models import Orientacion, Especialidad, Plan, Materia ,TipoEspecialidad
-from app.services import TipoEspecialidadService, EspecialidadService, PlanService, MateriaService
+from app.models import Orientacion
 from app.services import OrientacionService
+from test.instancias import nuevaespecialidad, nuevoplan, nuevamateria
 from app import db
 from datetime import date
 
@@ -23,21 +23,14 @@ class OrientacionTestCase(unittest.TestCase):
         db.drop_all()
         self.app_context.pop()
 
-    def test_orientacion_creation(self):
-        orientacion = self.__nuevaorientacion()
-        self.assertIsNotNone(orientacion)
-        self.assertIsNotNone(orientacion.nombre)
-        self.assertEqual(orientacion.nombre, "Orientacion A")
-        self.assertEqual(orientacion.especialidad.tipoespecialidad.nombre, "Tipo 1")
-
 
     def test_crear(self):
         orientacion = self.__nuevaorientacion()
         self.assertIsNotNone(orientacion)
         self.assertIsNotNone(orientacion.nombre)
         self.assertGreaterEqual(orientacion.nombre, "Orientacion A")
-        self.assertEqual(orientacion.especialidad.tipoespecialidad.nombre, "Tipo 1")
-        self.assertEqual(orientacion.plan.fecha_inicio, date(2025,1,2))
+        self.assertEqual(orientacion.especialidad.tipoespecialidad.nombre, "Cardiologia")
+        self.assertEqual(orientacion.plan.fecha_inicio, date(2024,6,4))
         self.assertIsNotNone(orientacion.materia.nombre, "Desarrollo")
 
     def test_busqueda(self):
@@ -49,7 +42,13 @@ class OrientacionTestCase(unittest.TestCase):
 
     def test_buscar_todos(self):
         orientacion1 = self.__nuevaorientacion()
-        orientacion2 = self.__nuevaorientacion(nombre="Orientacion B", codigo="SQL2")
+        
+        orientacion2 = self.__nuevaorientacion(
+        nombre="Orientacion B",
+        codigo_materia="MAT102",
+        nombre_especialidad="Neurología",
+        nombre_plan="Plan 2025")
+
         OrientacionService.crear(orientacion1)
         OrientacionService.crear(orientacion2)
         orientaciones = OrientacionService.buscar_todos()
@@ -71,33 +70,12 @@ class OrientacionTestCase(unittest.TestCase):
         self.assertIsNone(resultado)
 
 
-    def __nuevaorientacion(self, codigo="SQL", nombre="Orientacion A"):
-        tipo_especialidad = TipoEspecialidad()
-        tipo_especialidad.nombre = "Tipo 1"
-        TipoEspecialidadService.crear(tipo_especialidad)
-
-        especialidad = Especialidad()
-        especialidad.nombre = "matematica"
-        especialidad.letra = "l"
-        especialidad.tipoespecialidad = tipo_especialidad
-        EspecialidadService.crear(especialidad)
-
-        plan = Plan()
-        plan.fecha_inicio = date(2025,1,2)
-        plan.fecha_fin = date(2025,2,3)
-        PlanService.crear(plan)
-
-
-        materia = Materia()
-        materia.nombre = "Desarrollo"
-        materia.codigo = codigo
-        MateriaService.crear(materia)
-
+    def __nuevaorientacion(self, nombre="Orientacion A", codigo_materia="MAT101", nombre_especialidad="Cardiologia",nombre_plan="Plan 2024"):
         orientacion = Orientacion()
         orientacion.nombre = nombre
-        orientacion.especialidad = especialidad
-        orientacion.plan = plan
-        orientacion.materia = materia
+        orientacion.especialidad = nuevaespecialidad(nombre=nombre_especialidad)
+        orientacion.plan = nuevoplan(nombre=nombre_plan)
+        orientacion.materia = nuevamateria(codigo=codigo_materia)
         return orientacion
 
 
