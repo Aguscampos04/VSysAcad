@@ -5,23 +5,33 @@ from app.models import (
 )
 from datetime import date
 
+from app.services import (
+    AlumnoService, AreaService, CargoService, CategoriaCargoService,
+    DepartamentoService, EspecialidadService, FacultadService, GradoService, GrupoService,
+    MateriaService, OrientacionService, PlanService, TipoDedicacionService, TipoDocumentoService,
+    TipoEspecialidadService, UniversidadService
+)
+
 def nuevotipodocumento(dni=46291002, libreta_civica="nacional", libreta_enrolamiento="naci", pasaporte="nacnal"):
     tipo_documento = TipoDocumento()
     tipo_documento.dni = dni
     tipo_documento.libreta_civica = libreta_civica
     tipo_documento.libreta_enrolamiento = libreta_enrolamiento
     tipo_documento.pasaporte = pasaporte
+    TipoDocumentoService.crear(tipo_documento)
     return tipo_documento
 
 def nuevotipodedicacion(nombre="Dedicacion Completa", observacion="Observacion de prueba"):
     td = TipoDedicacion()
     td.nombre = nombre
     td.observacion = observacion
+    TipoDedicacionService.crear(td)
     return td
 
 def nuevacategoriacargo(nombre="Docente"):
     categoria = CategoriaCargo()
     categoria.nombre = nombre
+    CategoriaCargoService.crear(categoria)
     return categoria
 
 def nuevocargo(nombre="Profesor", puntos=10, categoria_cargo=None, tipo_dedicacion=None):
@@ -30,6 +40,7 @@ def nuevocargo(nombre="Profesor", puntos=10, categoria_cargo=None, tipo_dedicaci
     cargo.puntos = puntos
     cargo.categoria_cargo = categoria_cargo or nuevacategoriacargo()
     cargo.tipo_dedicacion = tipo_dedicacion or nuevotipodedicacion()
+    CargoService.crear(cargo)
     return cargo
 
 def nuevafacultad(nombre="Facultad de Ciencias", abreviatura="FCC", directorio="/facultad/ciencias",
@@ -46,22 +57,26 @@ def nuevafacultad(nombre="Facultad de Ciencias", abreviatura="FCC", directorio="
     facultad.telefono = telefono
     facultad.contacto = contacto
     facultad.email = email
+    FacultadService.crear(facultad)
     return facultad
 
 def nuevodepartamento(nombre="Matematicas"):
     departamento = Departamento()
     departamento.nombre = nombre
+    DepartamentoService.crear(departamento)
     return departamento
 
 def nuevaarea(nombre="Matematica"):
     area = Area()
     area.nombre = nombre
+    AreaService.crear(area)
     return area
 
 def nuevotipoespecialidad(nombre="Cardiologia", nivel="Avanzado"):
     tipo = TipoEspecialidad()
     tipo.nombre = nombre
     tipo.nivel = nivel
+    TipoEspecialidadService.crear(tipo)
     return tipo
 
 def nuevaespecialidad(nombre="Matematicas", letra="A", observacion="Observacion de prueba", tipoespecialidad=None):
@@ -70,6 +85,7 @@ def nuevaespecialidad(nombre="Matematicas", letra="A", observacion="Observacion 
     esp.letra = letra
     esp.observacion = observacion
     esp.tipoespecialidad = tipoespecialidad or nuevotipoespecialidad()
+    EspecialidadService.crear(esp)
     return esp
 
 def nuevoplan(nombre="Plan A", fecha_inicio=date(2024, 6, 4), fecha_fin=date(2024, 6, 5), observacion="Observacion de prueba"):
@@ -78,6 +94,7 @@ def nuevoplan(nombre="Plan A", fecha_inicio=date(2024, 6, 4), fecha_fin=date(202
     plan.fecha_inicio = fecha_inicio
     plan.fecha_fin = fecha_fin
     plan.observacion = observacion
+    PlanService.crear(plan)
     return plan
 
 def nuevamateria(nombre="Matematicas", codigo="MAT101", observacion="Observacion de prueba"):
@@ -85,6 +102,7 @@ def nuevamateria(nombre="Matematicas", codigo="MAT101", observacion="Observacion
     materia.nombre = nombre
     materia.codigo = codigo
     materia.observacion = observacion
+    MateriaService.crear(materia)
     return materia
 
 def nuevaorientacion(nombre="Orientacion 1", especialidad=None, plan=None, materia=None):
@@ -93,23 +111,27 @@ def nuevaorientacion(nombre="Orientacion 1", especialidad=None, plan=None, mater
     orientacion.especialidad = especialidad or nuevaespecialidad()
     orientacion.plan = plan or nuevoplan()
     orientacion.materia = materia or nuevamateria()
+    OrientacionService.crear(orientacion)
     return orientacion
 
 def nuevauniversidad(nombre="Universidad Nacional", sigla="UN"):
     uni = Universidad()
     uni.nombre = nombre
     uni.sigla = sigla
+    UniversidadService.crear(uni)
     return uni
 
 def nuevogrado(nombre="Primero", descripcion="Descripcion del primer grado"):
     grado = Grado()
     grado.nombre = nombre
     grado.descripcion = descripcion
+    GradoService.crear(grado)
     return grado
 
 def nuevogrupo(nombre="Grupo A"):
     grupo = Grupo()
     grupo.nombre = nombre
+    GrupoService.crear(grupo)
     return grupo
 
 def nuevoalumno(nombre="Juan", apellido="Pérez", nrodocumento="46291002", tipo_documento=None,
@@ -123,6 +145,7 @@ def nuevoalumno(nombre="Juan", apellido="Pérez", nrodocumento="46291002", tipo_
     alumno.sexo = sexo
     alumno.nro_legajo = nro_legajo
     alumno.fecha_ingreso = fecha_ingreso
+    AlumnoService.crear(alumno)
     return alumno
 
 def nuevaautoridad(nombre="Pelo", cargo=None, telefono="123456789", email="123@gmail.com"):
@@ -131,4 +154,5 @@ def nuevaautoridad(nombre="Pelo", cargo=None, telefono="123456789", email="123@g
     autoridad.cargo = cargo or nuevocargo()
     autoridad.telefono = telefono
     autoridad.email = email
+    #AutoridadService.crear(autoridad) #TODO sacar comentario cuando tengamos hecho service de autoridad e importar
     return autoridad
