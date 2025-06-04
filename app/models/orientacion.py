@@ -9,12 +9,12 @@ class Orientacion(db.Model):
     nombre = db.Column(db.String(50), nullable = False)
     
     especialidad_id = db.Column(db.Integer, db.ForeignKey('especialidades.id'), nullable=False)
-    especialidad = db.relationship('Especialidad', backref='orientaciones', lazy=True)
+    especialidad = db.relationship('Especialidad',  lazy=True)
     
     plan_id = db.Column(db.Integer, db.ForeignKey('planes.id'), nullable=False)
-    plan = db.relationship('Plan', backref='orientaciones', lazy=True)
+    plan = db.relationship('Plan', lazy=True)
     
     materia_id = db.Column(db.Integer, db.ForeignKey('materias.id'), nullable=False)
-    materia = db.relationship('Materia', backref='orientaciones', lazy=True)
+    materia = db.relationship('Materia', lazy=True)
 
     

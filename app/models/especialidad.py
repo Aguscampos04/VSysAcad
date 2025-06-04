@@ -11,4 +11,4 @@ class Especialidad(db.Model):
     observacion = db.Column(db.String(255), nullable=True)
     
     tipoespecialidad_id = db.Column(db.Integer, db.ForeignKey('tipoespecialidades.id'), nullable=False)
-    tipoespecialidad = db.relationship('TipoEspecialidad', backref='especialidades', lazy=True)
+    tipoespecialidad = db.relationship('TipoEspecialidad',  lazy=True)
