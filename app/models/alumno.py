@@ -11,7 +11,7 @@ class Alumno(db.Model):
     nrodocumento= db.Column(db.String(50), nullable=False)
 
     tipo_documento_id = db.Column(db.Integer, db.ForeignKey('tipodocumentos.id'), nullable=False)
-    tipo_documento = db.relationship('TipoDocumento', backref='alumnos', lazy=True)
+    tipo_documento = db.relationship('TipoDocumento',  lazy=True)
 
     fecha_nacimiento = db.Column(db.Date, nullable=False)
     sexo = db.Column(db.String(1), nullable=False) 

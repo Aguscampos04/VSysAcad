@@ -10,7 +10,7 @@ class Cargo(db.Model):
     puntos = db.Column(db.Integer, nullable = True)
     
     categoria_cargo_id = db.Column(db.Integer, db.ForeignKey('categoriacargos.id'), nullable=False)
-    categoria_cargo = db.relationship('CategoriaCargo', backref='cargos', lazy=True)
+    categoria_cargo = db.relationship('CategoriaCargo', lazy=True)
     
     tipo_dedicacion_id = db.Column(db.Integer, db.ForeignKey('tipodedicaciones.id'), nullable=False)
-    tipo_dedicacion = db.relationship('TipoDedicacion', backref='cargos', lazy=True)
+    tipo_dedicacion = db.relationship('TipoDedicacion', lazy=True)
