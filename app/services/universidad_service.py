@@ -50,7 +50,7 @@ class UniversidadService:
         :param id: ID de la universidad a borrar.
         :return: Objeto Universidad borrado o None si no se encuentra.
         """
-
+        #TODO si borras unversidad, no debe devolver universidad
         universidad = UniversidadRepository.borrar_por_id(id)
         if not universidad:
             return None
