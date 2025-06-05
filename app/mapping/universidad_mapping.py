@@ -1,11 +1,11 @@
-from marshmallow import fields, Schema, post_load
+from marshmallow import fields, Schema, post_load, validate
 from app.models.universidad import Universidad
 
 
 class UniversidadMapping(Schema):
-    id = fields.Integer(dump_only=True) 
-    nombre = fields.String(required = True)
-    sigla = fields.String(required = True)
+    id = fields.Integer() 
+    nombre = fields.String(required = True, validate = validate.Length(min=1, max=100))
+    sigla = fields.String(required = True, validate = validate.Length(min=1, max=10))
 
     @post_load
     def nueva_universidad(self,data,**kwargs):
