@@ -46,15 +46,10 @@ class FacultadRepository:
         return facultad_existente
     
     @staticmethod
-    def borrar_por_id(id: int) -> Facultad:
-        """
-        Borra una facultad por su ID.
-        :param id: ID de la facultad a borrar.
-        :return: Objeto Facultad borrado o None si no se encuentra.
-        """
+    def borrar_por_id(id: int) -> bool:
         facultad = db.session.query(Facultad).filter_by(id=id).first()
         if not facultad:
-            return None
+            return False
         db.session.delete(facultad)
         db.session.commit()
-        return facultad
+        return True

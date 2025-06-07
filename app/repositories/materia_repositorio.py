@@ -44,18 +44,13 @@ class MateriaRepository:
         return materia_existente
     
     @staticmethod
-    def borrar_por_id(id:int) -> Materia:
-        """
-        Borra un objeto Materia por su ID.
-        :param id: ID del objeto Materia a borrar.
-        :return: True si se borra correctamente, False en caso contrario.
-        """
+    def borrar_por_id(id: int) -> bool:
         materia = db.session.query(Materia).filter_by(id=id).first()
         if not materia:
-            return None
+            return False
         db.session.delete(materia)
         db.session.commit()
-        return Materia
+        return True
     
 
     

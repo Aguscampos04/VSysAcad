@@ -43,9 +43,6 @@ class AreaService:
         return area_existente
     
     @staticmethod
-    def borrar_por_id(id: int) -> Area:
-        area = AreaRepository.borrar_por_id(id)
-        if not area:
-            return None
-        return area
+    def borrar_por_id(id: int) -> bool:
+        return AreaRepository.borrar_por_id(id)
     

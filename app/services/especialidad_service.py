@@ -26,8 +26,5 @@ class EspecialidadService:
         return especialidad_existente
     
     @staticmethod
-    def borrar_por_id(id: int) -> Especialidad:
-        especialidad = EspecialidadRepository.borrar_por_id(id)
-        if not especialidad:
-            return None
-        return especialidad
+    def borrar_por_id(id: int) -> bool:
+        return EspecialidadRepository.borrar_por_id(id)

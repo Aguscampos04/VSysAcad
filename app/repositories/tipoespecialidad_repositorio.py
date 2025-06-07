@@ -42,10 +42,10 @@ class TipoEspecialidadRepository:
         return tipoespecialidad_existente
     
     @staticmethod
-    def borrar_por_id(id: int) -> TipoEspecialidad:
+    def borrar_por_id(id: int) -> bool:
         tipoespecialidad = db.session.query(TipoEspecialidad).filter_by(id=id).first()
         if not tipoespecialidad:
-            return None
+            return False
         db.session.delete(tipoespecialidad)
         db.session.commit()
-        return tipoespecialidad
+        return True

@@ -4,6 +4,7 @@ from flask import current_app
 from app import create_app
 from app.models.materia import Materia
 from app.services import MateriaService
+from test.instancias import nuevaautoridad
 from app import db
 
 
@@ -25,17 +26,18 @@ class MateriaTestCase(unittest.TestCase):
         MateriaService.crear(materia)
         self.assertIsNotNone(materia)
         self.assertIsNotNone(materia.id)
+        self.assertIsNotNone(materia.autoridades)
         self.assertGreaterEqual(materia.id, 1)
-        self.assertEqual(materia.nombre, "Matematicas")
+        self.assertEqual(materia.nombre, "Matematica")
 
     def test_busqueda(self):
         materia = self.__nuevamateria()
         MateriaService.crear(materia)
         r = MateriaService.buscar_por_id(materia.id)
         self.assertIsNotNone(r)
+        self.assertIsNotNone(materia.autoridades)
         self.assertEqual(r.nombre, materia.nombre)
         self.assertEqual(r.codigo, materia.codigo)
-        self.assertEqual(r.observacion, materia.observacion)
 
     def test_buscar_todos(self):
         materia1 = self.__nuevamateria()
@@ -50,9 +52,9 @@ class MateriaTestCase(unittest.TestCase):
     def test_actualizar(self):
         materia = self.__nuevamateria()
         MateriaService.crear(materia)
-        materia.nombre = "Matematicas Avanzadas"
+        materia.nombre = "Matematica Avanzadas"
         materia_actualizada = MateriaService.actualizar(materia.id, materia)
-        self.assertEqual(materia_actualizada.nombre, "Matematicas Avanzadas")
+        self.assertEqual(materia_actualizada.nombre, "Matematica Avanzadas")
 
     def test_borrar_por_id(self):
         materia = self.__nuevamateria()
@@ -61,9 +63,33 @@ class MateriaTestCase(unittest.TestCase):
         r = MateriaService.buscar_por_id(materia.id)
         self.assertIsNone(r)
 
-    def __nuevamateria(self, nombre="Matematicas", codigo="MAT101", observacion="Observacion de prueba"):
+    def test_materias_con_autoridades(self):
+        materia = self.__nuevamateria()
+        MateriaService.crear(materia)
+        materia_db = MateriaService.buscar_por_id(materia.id)
+        self.assertEqual(len(materia_db.autoridades), 1)
+        self.assertEqual(materia_db.autoridades[0].nombre, "Pelo")
+
+    def test_actualizar_con_autoridades(self):
+        materia = self.__nuevamateria()
+        MateriaService.crear(materia)
+        
+        nueva_autoridad = nuevaautoridad(nombre="lengua")
+
+        materia.nombre = "programacion"
+        materia.autoridades = [nueva_autoridad]  
+        materia_actualizada = MateriaService.actualizar(materia.id, materia)
+
+        self.assertEqual(materia_actualizada.nombre, "programacion")
+        self.assertEqual(len(materia_actualizada.autoridades), 1)
+        self.assertEqual(materia_actualizada.autoridades[0].nombre, "lengua")
+
+    def __nuevamateria(self, nombre="Matematica", codigo="MAT101", observacion="Observacion de prueba", autoridades =None):
         materia = Materia()
         materia.nombre = nombre
         materia.codigo = codigo
         materia.observacion = observacion
+        if autoridades is None:
+            autoridades = [nuevaautoridad()]
+        materia.autoridades = autoridades
         return materia

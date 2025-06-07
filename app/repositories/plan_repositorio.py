@@ -39,15 +39,11 @@ class PlanRepository:
             return None
         return plan_existente
     
-    def borrar_por_id(id: int) -> Plan:
-        """
-        Borra un plan por su ID.
-        :param id: ID del plan a borrar.
-        :return: Instancia de Plan borrada o None si no se encuentra.
-        """
+    @staticmethod
+    def borrar_por_id(id: int) -> bool:
         plan = db.session.query(Plan).filter_by(id=id).first()
         if not plan:
-            return None
+            return False
         db.session.delete(plan)
         db.session.commit()
-        return plan
+        return True

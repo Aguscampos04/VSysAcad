@@ -23,10 +23,10 @@ class GrupoRepository:
         return grupo_existente
     
     @staticmethod
-    def borrar_por_id(id: int) -> Grupo:
+    def borrar_por_id(id: int) -> bool:
         grupo = db.session.query(Grupo).filter_by(id=id).first()
         if not grupo:
-            return None
+            return False
         db.session.delete(grupo)
         db.session.commit()
-        return grupo
+        return True

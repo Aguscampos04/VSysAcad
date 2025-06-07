@@ -25,10 +25,10 @@ class CargoRepository:
         return Cargo_existente
     
     @staticmethod
-    def borrar_por_id(id: int) -> Cargo:
+    def borrar_por_id(id: int) -> bool:
         cargo = db.session.query(Cargo).filter_by(id=id).first()
         if not cargo:
-            return None
+            return False
         db.session.delete(cargo)
         db.session.commit()
-        return cargo
+        return True

@@ -23,10 +23,10 @@ class OrientacionRepository:
         return orientacion_existente
     
     @staticmethod
-    def borrar_por_id(id: int) -> Orientacion:
+    def borrar_por_id(id: int) -> bool:
         orientacion = db.session.query(Orientacion).filter_by(id=id).first()
         if not orientacion:
-            return None
+            return False
         db.session.delete(orientacion)
         db.session.commit()
-        return orientacion
+        return True

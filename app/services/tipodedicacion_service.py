@@ -40,14 +40,8 @@ class TipoDedicacionService:
         tipodedicacion_existente.nombre = tipodedicacion.nombre
         tipodedicacion_existente.observacion = tipodedicacion.observacion
         return tipodedicacion_existente
+    
     @staticmethod
-    def borrar_por_id(id: int) -> TipoDedicacion:
-        """
-        Borra un tipo dedicacion por su ID.
-        :param id: ID del tipo dedicacion a borrar.
-        """
-        tipodedicacion = TipoDedicacionRepository.borrar_por_id(id)
-        if not tipodedicacion:
-            return None
-        return tipodedicacion
+    def borrar_por_id(id: int) -> bool:
+        return TipoDedicacionRepository.borrar_por_id(id)
     

@@ -46,15 +46,15 @@ class UniversidadRepository:
         return facultad_existente
     
     @staticmethod
-    def borrar_por_id(id: int) -> Universidad:
+    def borrar_por_id(id: int) -> bool:
         """
         Borra una universidad por su ID.
         :param id: ID de la universidad a borrar.
-        :return: Objeto Universidad borrado o None si no se encuentra.
+        :return: True si fue eliminada, False si no existe.
         """
         universidad = db.session.query(Universidad).filter_by(id=id).first()
         if not universidad:
-            return None
+            return False
         db.session.delete(universidad)
         db.session.commit()
-        return universidad
+        return True

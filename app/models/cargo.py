@@ -5,12 +5,12 @@ from app import db
 @dataclass(init=False, repr=True, eq=True)
 class Cargo(db.Model):
     __tablename__ = 'cargos'
-    id = db.Column(db.Integer, primary_key=True,autoincrement=True)
-    nombre = db.Column(db.String(50), nullable=False)
-    puntos = db.Column(db.Integer, nullable = True)
+    id :int = db.Column(db.Integer, primary_key=True,autoincrement=True)
+    nombre: str = db.Column(db.String(50), nullable=False)
+    puntos: int = db.Column(db.Integer, nullable = True)
     
-    categoria_cargo_id = db.Column(db.Integer, db.ForeignKey('categoriacargos.id'), nullable=False)
+    categoria_cargo_id: int = db.Column(db.Integer, db.ForeignKey('categoriacargos.id'), nullable=False)
     categoria_cargo = db.relationship('CategoriaCargo', lazy=True)
     
-    tipo_dedicacion_id = db.Column(db.Integer, db.ForeignKey('tipodedicaciones.id'), nullable=False)
+    tipo_dedicacion_id: int = db.Column(db.Integer, db.ForeignKey('tipodedicaciones.id'), nullable=False)
     tipo_dedicacion = db.relationship('TipoDedicacion', lazy=True)

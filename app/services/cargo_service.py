@@ -28,8 +28,5 @@ class CargoService:
         
     
     @staticmethod
-    def borrar_por_id(id: int) -> Cargo:
-        departamento = CargoRepository.borrar_por_id(id)
-        if not departamento:
-            return None
-        return departamento
+    def borrar_por_id(id: int) -> bool:
+        return CargoRepository.borrar_por_id(id)

@@ -23,10 +23,10 @@ class AreaRepository:
         return area_existente
     
     @staticmethod
-    def borrar_por_id(id: int) -> Area:
+    def borrar_por_id(id: int) -> bool:
         area = db.session.query(Area).filter_by(id=id).first()
         if not area:
-            return None
+            return False
         db.session.delete(area)
         db.session.commit()
-        return area
+        return True

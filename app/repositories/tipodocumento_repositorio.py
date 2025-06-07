@@ -43,16 +43,11 @@ class TipoDocumentoRepository:
         return tipodocumento_existente
     
     @staticmethod
-    def borrar_por_id(id: int) -> TipoDocumento:
-        """
-        Borra un tipo de documento por su ID.
-        :param id: ID del tipo de documento a borrar.
-        :return: True si se borra correctamente, False si no se encuentra.
-        """
+    def borrar_por_id(id: int) -> bool:
         tipodocumento = db.session.query(TipoDocumento).filter_by(id=id).first()
         if not tipodocumento:
-            return None
+            return False
         db.session.delete(tipodocumento)
         db.session.commit()
-        return tipodocumento
+        return True
         

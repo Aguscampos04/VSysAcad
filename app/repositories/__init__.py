@@ -13,4 +13,5 @@ from .categoriacargo_repositorio import CategoriaCargoRepository
 from .grupo_repositorio import GrupoRepository
 from .cargo_repositorio import CargoRepository
 from .orientacion_repositorio import OrientacionRepository
+from .autoridad_repositorio import AutoridadRepository
 from .facultad_repositorio import FacultadRepository

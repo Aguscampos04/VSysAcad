@@ -44,15 +44,10 @@ class GradoRepository:
         return grado_existente 
     
     @staticmethod
-    def borrar_por_id(id: int) -> Grado:
-        """
-        Borra un grado por su ID.
-        :param id: ID del grado a borrar.
-        :return: Objeto Grado borrado o None si no se encuentra.
-        """
+    def borrar_por_id(id: int) -> bool:
         grado = db.session.query(Grado).filter_by(id=id).first()
         if not grado:
-            return None
+            return False
         db.session.delete(grado)
         db.session.commit()
-        return grado
+        return True
