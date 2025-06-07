@@ -17,3 +17,7 @@ class Facultad(db.Model):
     telefono: str = db.Column(db.String(20), nullable=True)
     contacto: str = db.Column(db.String(100), nullable=True)
     email: str = db.Column(db.String(100), nullable=False)
+
+    universidad_id: int = db.Column(db.Integer, db.ForeignKey('universidades.id'), nullable=False)
+    universidad = db.relationship('Universidad', lazy=True)
+

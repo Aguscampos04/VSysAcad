@@ -21,8 +21,8 @@ class OrientacionService:
             return None
         orientacion_existente.nombre = orientacion.nombre
         orientacion_existente.especialidad_id = orientacion.especialidad_id
-        orientacion_existente.plan_id = orientacion.plan_id
-        orientacion_existente.materia_id = orientacion.materia_id
+        orientacion_existente.plan = orientacion.plan
+        orientacion_existente.materia = orientacion.materia
         return orientacion_existente
     
     @staticmethod

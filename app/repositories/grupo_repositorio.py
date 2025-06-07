@@ -2,6 +2,7 @@ from app import db
 from app.models import Grupo
 
 class GrupoRepository:
+    
     @staticmethod
     def crear(grupo):
         db.session.add(grupo)

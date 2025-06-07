@@ -7,7 +7,6 @@ from app.services.facultad_service import FacultadService
 from app import db
 from test.instancias import nuevafacultad
 
-#TODO agregar relacion muchos a muchos con autoridad
 class FacultadTestCase(unittest.TestCase):
     def setUp(self):
         os.environ['FLASK_CONTEXT'] = 'testing'
@@ -25,6 +24,8 @@ class FacultadTestCase(unittest.TestCase):
         facultad = nuevafacultad()
         self.assertIsNotNone(facultad)
         self.assertIsNotNone(facultad.id)
+        self.assertIsNotNone(facultad.universidad)
+        self.assertEqual(facultad.universidad.nombre,"Universidad Nacional")
         self.assertGreaterEqual(facultad.id, 1)
         self.assertEqual(facultad.nombre, "Facultad de Ciencias")
 
@@ -34,7 +35,6 @@ class FacultadTestCase(unittest.TestCase):
         self.assertIsNotNone(r)
         self.assertEqual(r.nombre, "Facultad de Ciencias")
         self.assertEqual(r.abreviatura, "FCC")
-
 
     def test_buscar_todos(self):
         facultad1 = nuevafacultad()
