@@ -23,8 +23,5 @@ class GrupoService:
         return grupo_existente
     
     @staticmethod
-    def borrar_por_id(id: int) -> Grupo:
-        grupo = GrupoRepository.borrar_por_id(id)
-        if not grupo:
-            return None
-        return grupo
+    def borrar_por_id(id: int) -> bool:
+        return GrupoRepository.borrar_por_id(id)

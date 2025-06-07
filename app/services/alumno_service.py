@@ -32,8 +32,5 @@ class AlumnoService:
         
     
     @staticmethod
-    def borrar_por_id(id: int) -> Alumno:
-        departamento = AlumnoRepository.borrar_por_id(id)
-        if not departamento:
-            return None
-        return departamento
+    def borrar_por_id(id: int) -> bool:
+        return AlumnoRepository.borrar_por_id(id)

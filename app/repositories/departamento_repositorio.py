@@ -43,15 +43,10 @@ class DepartamentoRepository:
         return departamento_existente
     
     @staticmethod
-    def borrar_por_id(id: int) -> Departamento:
-        """
-        Borra un departamento por su ID.
-        :param id: ID del departamento a borrar.
-        :return: Objeto Departamento borrado o None si no se encuentra.
-        """
+    def borrar_por_id(id: int) -> bool:
         departamento = db.session.query(Departamento).filter_by(id=id).first()
         if not departamento:
-            return None
+            return False
         db.session.delete(departamento)
         db.session.commit()
-        return departamento
+        return True

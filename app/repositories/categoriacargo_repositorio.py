@@ -24,10 +24,10 @@ class CategoriaCargoRepository:
         return categoria_existente
     
     @staticmethod
-    def borrar_por_id(id: int) -> CategoriaCargo:
-        categoria = db.session.query(CategoriaCargo).filter_by(id=id).first()
-        if not categoria:
-            return None
-        db.session.delete(categoria)
+    def borrar_por_id(id: int) -> bool:
+        categoriacargo = db.session.query(CategoriaCargo).filter_by(id=id).first()
+        if not categoriacargo:
+            return False
+        db.session.delete(categoriacargo)
         db.session.commit()
-        return categoria
+        return True

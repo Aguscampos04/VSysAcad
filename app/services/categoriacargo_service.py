@@ -24,8 +24,5 @@ class CategoriaCargoService:
         return categoria_existente
     
     @staticmethod
-    def borrar_por_id(id: int) -> CategoriaCargo:
-        categoria = CategoriaCargoRepository.borrar_por_id(id)
-        if not categoria:
-            return None
-        return categoria
+    def borrar_por_id(id: int) -> bool:
+        return CategoriaCargoRepository.borrar_por_id(id)

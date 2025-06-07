@@ -23,10 +23,10 @@ class AlumnoRepository:
         return alumno_existente
     
     @staticmethod
-    def borrar_por_id(id: int) -> Alumno:
+    def borrar_por_id(id: int) -> bool:
         alumno = db.session.query(Alumno).filter_by(id=id).first()
         if not alumno:
-            return None
+            return False
         db.session.delete(alumno)
         db.session.commit()
-        return alumno
+        return True

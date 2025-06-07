@@ -6,7 +6,7 @@ from app.models import (
 from datetime import date
 
 from app.services import (
-    AlumnoService, AreaService, CargoService, CategoriaCargoService,
+    AlumnoService, AreaService,AutoridadService, CargoService, CategoriaCargoService,
     DepartamentoService, EspecialidadService, FacultadService, GradoService, GrupoService,
     MateriaService, OrientacionService, PlanService, TipoDedicacionService, TipoDocumentoService,
     TipoEspecialidadService, UniversidadService
@@ -97,11 +97,16 @@ def nuevoplan(nombre="Plan A", fecha_inicio=date(2024, 6, 4), fecha_fin=date(202
     PlanService.crear(plan)
     return plan
 
-def nuevamateria(nombre="Matematicas", codigo="MAT101", observacion="Observacion de prueba"):
+def nuevamateria(nombre="Matematica", codigo="MAT101", observacion="Observacion de prueba",autoridades=None):
     materia = Materia()
     materia.nombre = nombre
     materia.codigo = codigo
     materia.observacion = observacion
+
+    if autoridades is None:
+        autoridades = []  
+    materia.autoridades = autoridades
+    
     MateriaService.crear(materia)
     return materia
 
@@ -148,11 +153,14 @@ def nuevoalumno(nombre="Juan", apellido="Pérez", nrodocumento="46291002", tipo_
     AlumnoService.crear(alumno)
     return alumno
 
-def nuevaautoridad(nombre="Pelo", cargo=None, telefono="123456789", email="123@gmail.com"):
+def nuevaautoridad(nombre="Pelo", cargo=None, telefono="123456789", email="123@gmail.com",materias= None):
     autoridad = Autoridad()
     autoridad.nombre = nombre
     autoridad.cargo = cargo or nuevocargo()
     autoridad.telefono = telefono
     autoridad.email = email
-    #AutoridadService.crear(autoridad) #TODO sacar comentario cuando tengamos hecho service de autoridad e importar
+    if materias is None:
+        materias = []  
+    autoridad.materias = materias
+    AutoridadService.crear(autoridad)
     return autoridad

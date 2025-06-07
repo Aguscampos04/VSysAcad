@@ -13,4 +13,5 @@ from.categoriacargo_service import CategoriaCargoService
 from .grupo_service import GrupoService
 from .cargo_service import CargoService
 from .orientacion_service import OrientacionService
+from .autoridad_service import AutoridadService
 from .facultad_service import FacultadService

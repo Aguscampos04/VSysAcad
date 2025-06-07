@@ -26,8 +26,5 @@ class OrientacionService:
         return orientacion_existente
     
     @staticmethod
-    def borrar_por_id(id: int) -> Orientacion:
-        orientacion = OrientacionRepository.borrar_por_id(id)
-        if not orientacion:
-            return None
-        return orientacion
+    def borrar_por_id(id: int) -> bool:
+        return OrientacionRepository.borrar_por_id(id)

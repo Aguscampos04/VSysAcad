@@ -38,15 +38,12 @@ class TipoDedicacionRepository:
         if not tipodedicacion_existente:
             return None
         return tipodedicacion_existente
+    
     @staticmethod
-    def borrar_por_id(id: int) ->TipoDedicacion:
-        """
-        Borra un tipo dedicacion por su ID.
-        :param id: ID del tipo dedicacion a borrar.
-        """
+    def borrar_por_id(id: int) -> bool:
         tipodedicacion = db.session.query(TipoDedicacion).filter_by(id=id).first()
         if not tipodedicacion:
-            return None
+            return False
         db.session.delete(tipodedicacion)
         db.session.commit()
-        return tipodedicacion
+        return True
