@@ -4,7 +4,7 @@ from flask import current_app
 from app import create_app
 from app.models import Orientacion
 from app.services import OrientacionService
-from test.instancias import nuevaespecialidad, nuevoplan, nuevamateria
+from test.instancias import nuevaorientacion
 from app import db
 from datetime import date
 
@@ -25,58 +25,39 @@ class OrientacionTestCase(unittest.TestCase):
 
 
     def test_crear(self):
-        orientacion = self.__nuevaorientacion()
+        orientacion = nuevaorientacion()
         self.assertIsNotNone(orientacion)
         self.assertIsNotNone(orientacion.nombre)
-        self.assertGreaterEqual(orientacion.nombre, "Orientacion A")
+        self.assertGreaterEqual(orientacion.nombre, "Orientacion 1")
         self.assertEqual(orientacion.especialidad.tipoespecialidad.nombre, "Cardiologia")
         self.assertEqual(orientacion.plan.fecha_inicio, date(2024,6,4))
         self.assertIsNotNone(orientacion.materia.nombre, "Desarrollo")
 
-    def test_busqueda(self):
-        orientacion = self.__nuevaorientacion()
-        OrientacionService.crear(orientacion)
+    def test_buscar_por_id(self):
+        orientacion = nuevaorientacion()
         r=OrientacionService.buscar_por_id(orientacion.id)
         self.assertIsNotNone(r)
-        self.assertEqual(r.nombre, "Orientacion A")
+        self.assertEqual(r.nombre, "Orientacion 1")
 
     def test_buscar_todos(self):
-        orientacion1 = self.__nuevaorientacion()
-        
-        orientacion2 = self.__nuevaorientacion(
-        nombre="Orientacion B",
-        codigo_materia="MAT102",
-        nombre_especialidad="Neurología",
-        nombre_plan="Plan 2025")
+        orientacion1 = nuevaorientacion()
+        orientacion2 = nuevaorientacion(nombre="Orientacion B")
 
-        OrientacionService.crear(orientacion1)
-        OrientacionService.crear(orientacion2)
         orientaciones = OrientacionService.buscar_todos()
         self.assertIsNotNone(orientaciones)
         self.assertGreaterEqual(len(orientaciones), 2)
 
     def test_actualizar(self):
-        orientacion = self.__nuevaorientacion()
-        OrientacionService.crear(orientacion)
+        orientacion = nuevaorientacion()
         orientacion.nombre = "Orientacion Actualizada"
         orientacion_actualizada = OrientacionService.actualizar(orientacion.id, orientacion)
         self.assertEqual(orientacion_actualizada.nombre, "Orientacion Actualizada")
 
     def test_borrar(self):
-        orientacion = self.__nuevaorientacion()
-        OrientacionService.crear(orientacion)
+        orientacion = nuevaorientacion()
         OrientacionService.borrar_por_id(orientacion.id)
         resultado = OrientacionService.buscar_por_id(orientacion.id)
         self.assertIsNone(resultado)
-
-
-    def __nuevaorientacion(self, nombre="Orientacion A", codigo_materia="MAT101", nombre_especialidad="Cardiologia",nombre_plan="Plan 2024"):
-        orientacion = Orientacion()
-        orientacion.nombre = nombre
-        orientacion.especialidad = nuevaespecialidad(nombre=nombre_especialidad)
-        orientacion.plan = nuevoplan(nombre=nombre_plan)
-        orientacion.materia = nuevamateria(codigo=codigo_materia)
-        return orientacion
 
 
 

@@ -5,6 +5,7 @@ from app import create_app
 from app.models import Universidad
 from app.services import UniversidadService
 from app import db
+from test.instancias import nuevauniversidad
 
 class UniversidadTestCase(unittest.TestCase):
     def setUp(self):
@@ -21,47 +22,34 @@ class UniversidadTestCase(unittest.TestCase):
         self.app_context.pop()
 
     def test_crear(self):
-        universidad = self.__nuevauniversidad()
-        UniversidadService.crear(universidad)
+        universidad = nuevauniversidad()
         self.assertIsNotNone(universidad)
         self.assertIsNotNone(universidad.id)
         self.assertGreaterEqual(universidad.id, 1)
         self.assertEqual(universidad.nombre, "Universidad Nacional")
 
-    def test_busqueda(self):
-        universidad = self.__nuevauniversidad()
-        UniversidadService.crear(universidad)
+    def test_buscar_por_id(self):
+        universidad = nuevauniversidad()
         r=UniversidadService.buscar_por_id(universidad.id)
         self.assertIsNotNone(r)
         self.assertEqual(r.nombre, "Universidad Nacional")
         self.assertEqual(r.sigla, "UN")
     
     def test_buscar_todos(self):
-        universidad1 = self.__nuevauniversidad()
-        universidad2 = self.__nuevauniversidad()
-        UniversidadService.crear(universidad1)
-        UniversidadService.crear(universidad2)
+        universidad1 = nuevauniversidad()
+        universidad2 = nuevauniversidad()
         universidades = UniversidadService.buscar_todos()
         self.assertIsNotNone(universidades)
         self.assertEqual(len(universidades), 2)
 
     def test_actualizar(self):
-        universidad = self.__nuevauniversidad()
-        UniversidadService.crear(universidad)
+        universidad = nuevauniversidad()
         universidad.nombre = "Universidad Actualizada"
         universidad_actualizada = UniversidadService.actualizar(universidad.id,universidad)
         self.assertEqual(universidad_actualizada.nombre, "Universidad Actualizada")
 
     def test_borrar(self):
-        universidad = self.__nuevauniversidad()
-        UniversidadService.crear(universidad)
+        universidad = nuevauniversidad()
         UniversidadService.borrar_por_id(universidad.id)
         resultado = UniversidadService.buscar_por_id(universidad.id)
         self.assertIsNone(resultado)
-
-
-    def __nuevauniversidad(self):
-        universidad = Universidad()
-        universidad.nombre = "Universidad Nacional"
-        universidad.sigla = "UN"
-        return universidad

@@ -5,6 +5,7 @@ from app import create_app
 from app.models.facultad import Facultad
 from app.services.facultad_service import FacultadService
 from app import db
+from test.instancias import nuevafacultad
 
 #TODO agregar relacion muchos a muchos con autoridad
 class FacultadTestCase(unittest.TestCase):
@@ -21,16 +22,14 @@ class FacultadTestCase(unittest.TestCase):
         self.app_context.pop()
 
     def test_crear(self):
-        facultad = self.__nuevafacultad()
-        FacultadService.crear(facultad)
+        facultad = nuevafacultad()
         self.assertIsNotNone(facultad)
         self.assertIsNotNone(facultad.id)
         self.assertGreaterEqual(facultad.id, 1)
         self.assertEqual(facultad.nombre, "Facultad de Ciencias")
 
-    def test_busqueda(self):
-        facultad = self.__nuevafacultad()
-        FacultadService.crear(facultad)    
+    def test_buscar_por_id(self):
+        facultad = nuevafacultad()
         r=FacultadService.buscar_por_id(facultad.id)
         self.assertIsNotNone(r)
         self.assertEqual(r.nombre, "Facultad de Ciencias")
@@ -38,38 +37,21 @@ class FacultadTestCase(unittest.TestCase):
 
 
     def test_buscar_todos(self):
-        facultad1 = self.__nuevafacultad()
-        facultad2 = self.__nuevafacultad()
-        FacultadService.crear(facultad1)
-        FacultadService.crear(facultad2)
+        facultad1 = nuevafacultad()
+        facultad2 = nuevafacultad()
         facultades = FacultadService.buscar_todos()
         self.assertIsNotNone(facultades)
         self.assertEqual(len(facultades), 2)
 
     def test_actualizar(self):
-        facultad= self.__nuevafacultad()
-        FacultadService.crear(facultad)
+        facultad= nuevafacultad()
         facultad.nombre = "Facultad de Ciencias Actualizada"
         facultad_actualizada = FacultadService.actualizar(facultad.id, facultad)
         self.assertEqual(facultad_actualizada.nombre, "Facultad de Ciencias Actualizada")
 
     def test_borrar(self):
-        facultad = self.__nuevafacultad()
-        FacultadService.crear(facultad)
+        facultad = nuevafacultad()
         FacultadService.borrar_por_id(facultad.id)
         resultado = FacultadService.buscar_por_id(facultad.id)
         self.assertIsNone(resultado)
     
-    def __nuevafacultad(self):
-        facultad = Facultad()
-        facultad.nombre = "Facultad de Ciencias"
-        facultad.abreviatura = "FCC"
-        facultad.directorio = "/facultad/ciencias"
-        facultad.sigla = "FC"
-        facultad.codigopostal = "12345"
-        facultad.ciudad = "Ciudad"
-        facultad.domicilio = "Calle 123"
-        facultad.telefono = "123456789"
-        facultad.contacto = "Juan Perez"
-        facultad.email = "1234@gmail.com"
-        return facultad

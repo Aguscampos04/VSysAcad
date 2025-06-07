@@ -4,6 +4,7 @@ from flask import current_app
 from app import create_app
 from app.models.categoriacargo import CategoriaCargo
 from app.services import CategoriaCargoService
+from test.instancias import nuevacategoriacargo
 from app import db
 
 class CategoriaCargoTestCase(unittest.TestCase):
@@ -20,48 +21,37 @@ class CategoriaCargoTestCase(unittest.TestCase):
         self.app_context.pop()
 
     def test_crear(self):
-        categoria = self.__nuevacategoria()
-        CategoriaCargoService.crear(categoria)
+        categoria = nuevacategoriacargo()
         self.assertIsNotNone(categoria)
         self.assertIsNotNone(categoria.id)
         self.assertGreaterEqual(categoria.id, 1)
         self.assertEqual(categoria.nombre, "Docente")
 
-    def test_busqueda(self):
-        categoria = self.__nuevacategoria()
-        CategoriaCargoService.crear(categoria)
+    def test_buscar_por_id(self):
+        categoria = nuevacategoriacargo()
         r=CategoriaCargoService.buscar_por_id(categoria.id)
         self.assertIsNotNone(r)
         self.assertEqual(r.nombre, "Docente")
         
     
     def test_buscar_todos(self):
-        categoria1 = self.__nuevacategoria()
-        categoria2 = self.__nuevacategoria()
-        CategoriaCargoService.crear(categoria1)
-        CategoriaCargoService.crear(categoria2)
+        categoria1 = nuevacategoriacargo()
+        categoria2 = nuevacategoriacargo()
         categorias = CategoriaCargoService.buscar_todos()
         self.assertIsNotNone(categorias)
         self.assertEqual(len(categorias), 2)
 
     def test_actualizar(self):
-        categoria = self.__nuevacategoria()
-        CategoriaCargoService.crear(categoria)
+        categoria = nuevacategoriacargo()
         categoria.nombre = "Docente actualizado"
         categoria_actualizado = CategoriaCargoService.actualizar(categoria.id, categoria)
         self.assertEqual(categoria_actualizado.nombre, "Docente actualizado")
 
     def test_borrar(self):
-        categoria = self.__nuevacategoria()
-        CategoriaCargoService.crear(categoria)
+        categoria = nuevacategoriacargo()
         CategoriaCargoService.borrar_por_id(categoria.id)
         resultado = CategoriaCargoService.buscar_por_id(categoria.id)
         self.assertIsNone(resultado)
 
-    def __nuevacategoria(self):
-        categoria= CategoriaCargo()
-        categoria.nombre = "Docente"
-        return categoria
-    
     
         

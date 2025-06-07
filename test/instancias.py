@@ -120,11 +120,11 @@ def nuevaorientacion(nombre="Orientacion 1", especialidad=None, plan=None, mater
     return orientacion
 
 def nuevauniversidad(nombre="Universidad Nacional", sigla="UN"):
-    uni = Universidad()
-    uni.nombre = nombre
-    uni.sigla = sigla
-    UniversidadService.crear(uni)
-    return uni
+    universidad = Universidad()
+    universidad.nombre = nombre
+    universidad.sigla = sigla
+    UniversidadService.crear(universidad)
+    return universidad
 
 def nuevogrado(nombre="Primero", descripcion="Descripcion del primer grado"):
     grado = Grado()
@@ -153,14 +153,11 @@ def nuevoalumno(nombre="Juan", apellido="Pérez", nrodocumento="46291002", tipo_
     AlumnoService.crear(alumno)
     return alumno
 
-def nuevaautoridad(nombre="Pelo", cargo=None, telefono="123456789", email="123@gmail.com",materias= None):
+def nuevaautoridad(nombre="Pelo", cargo=None, telefono="123456789", email="123@gmail.com"):
     autoridad = Autoridad()
     autoridad.nombre = nombre
     autoridad.cargo = cargo or nuevocargo()
     autoridad.telefono = telefono
     autoridad.email = email
-    if materias is None:
-        materias = []  
-    autoridad.materias = materias
     AutoridadService.crear(autoridad)
     return autoridad

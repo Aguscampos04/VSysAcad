@@ -1,6 +1,6 @@
 from app import db
-from app.models import Autoridad
- 
+from app.models import Autoridad, Materia
+
 class AutoridadRepository:
     @staticmethod
     def crear(autoridad):
@@ -10,18 +10,18 @@ class AutoridadRepository:
     @staticmethod
     def buscar_por_id(id: int):
         return db.session.query(Autoridad).filter_by(id=id).first()
-    
+
     @staticmethod
     def buscar_todos():
         return db.session.query(Autoridad).all()
-    
+
     @staticmethod
     def actualizar(autoridad) -> Autoridad:
         autoridad_existente = db.session.merge(autoridad)
         if not autoridad_existente:
             return None
         return autoridad_existente
-    
+
     @staticmethod
     def borrar_por_id(id: int) -> bool:
         autoridad = db.session.query(Autoridad).filter_by(id=id).first()
@@ -30,3 +30,13 @@ class AutoridadRepository:
         db.session.delete(autoridad)
         db.session.commit()
         return True
+
+    @staticmethod
+    def asociar_materia(autoridad: Autoridad, materia: Materia):
+        autoridad.asociar_materia(materia)
+        db.session.commit()
+
+    @staticmethod
+    def desasociar_materia(autoridad: Autoridad, materia: Materia):
+        autoridad.desasociar_materia(materia)
+        db.session.commit()
