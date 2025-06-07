@@ -19,6 +19,16 @@ class IndexTestCase(unittest.TestCase):
         db.drop_all()
         self.app_context.pop()
 
+    def test_obtener_por_id(self):
+        client = self.app.test_client(use_cookies=True)
+        universidad = nuevauniversidad()
+        universidad_mapping = UniversidadMapping()
+        response = client.get(f'http://localhost:5000/api/v1/universidad/{universidad.id}')
+        universidad_obtenida = universidad_mapping.load(response.get_json())
+        self.assertEqual(universidad_obtenida.id, universidad.id)
+        self.assertEqual(response.status_code, 200)
+        self.assertIsNotNone(response.get_json())
+
     def test_obtener_todos(self):
         client = self.app.test_client(use_cookies=True)
         universidad1 = nuevauniversidad()
@@ -29,4 +39,5 @@ class IndexTestCase(unittest.TestCase):
         self.assertEqual(len(universidades), 2)
         self.assertEqual(response.status_code, 200)
         self.assertIsNotNone(response.get_json())    
+
         

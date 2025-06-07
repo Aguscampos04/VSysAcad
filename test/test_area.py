@@ -4,6 +4,7 @@ from flask import current_app
 from app import create_app
 from app.models.area import Area
 from app.services import AreaService
+from test.instancias import nuevaarea
 from app import db
 
 class AreaTestCase(unittest.TestCase):
@@ -20,44 +21,33 @@ class AreaTestCase(unittest.TestCase):
         self.app_context.pop()
 
     def test_crear(self):
-        area = self.__nuevaarea()
-        AreaService.crear(area)
+        area = nuevaarea()
         self.assertIsNotNone(area)
         self.assertIsNotNone(area.id)
         self.assertGreaterEqual(area.id, 1)
-        self.assertEqual(area.nombre, "matematica")
+        self.assertEqual(area.nombre, "Matematica")
 
-    def test_busqueda(self):
-        area = self.__nuevaarea()
-        AreaService.crear(area)
+    def test_buscar_por_id(self):
+        area = nuevaarea()
         r = AreaService.buscar_por_id(area.id)
         self.assertIsNotNone(r)
-        self.assertEqual(r.nombre, "matematica")
+        self.assertEqual(r.nombre, "Matematica")
 
     def test_buscar_todos(self):
-        area1 = self.__nuevaarea("matematica")
-        area2 = self.__nuevaarea("nombre2")
-        AreaService.crear(area1)
-        AreaService.crear(area2)
+        area1 = nuevaarea("Matematica")
+        area2 = nuevaarea("nombre2")
         areas = AreaService.buscar_todos()
         self.assertIsNotNone(areas)
         self.assertEqual(len(areas), 2)
 
     def test_actualizar(self):
-        area = self.__nuevaarea()
-        AreaService.crear(area)
+        area = nuevaarea()
         area.nombre = "nombre actualizado"
         area_actualizado = AreaService.actualizar(area.id, area)
         self.assertEqual(area_actualizado.nombre, "nombre actualizado")
 
     def test_borrar(self):
-        area = self.__nuevaarea()
-        AreaService.crear(area)
+        area = nuevaarea()
         AreaService.borrar_por_id(area.id)
         resultado = AreaService.buscar_por_id(area.id)
         self.assertIsNone(resultado)
-
-    def __nuevaarea(self, nombre="matematica"):
-        area = Area()
-        area.nombre = nombre
-        return area

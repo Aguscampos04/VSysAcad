@@ -5,6 +5,7 @@ from app import create_app
 from app.models import TipoEspecialidad
 from app.services import TipoEspecialidadService
 from app import db
+from test.instancias import nuevotipoespecialidad
 
 
 class TipoEspecialidadTestCase(unittest.TestCase):
@@ -15,40 +16,34 @@ class TipoEspecialidadTestCase(unittest.TestCase):
         self.app_context.push()
         db.create_all()
 
-
     def tearDown(self):
         db.session.remove()
         db.drop_all()
         self.app_context.pop()
 
     def test_crear(self):
-        tipoespecialidad = self.__nuevotipoespecialidad()
-        TipoEspecialidadService.crear(tipoespecialidad)
+        tipoespecialidad = nuevotipoespecialidad()
         self.assertIsNotNone(tipoespecialidad)
         self.assertIsNotNone(tipoespecialidad.id)
         self.assertGreaterEqual(tipoespecialidad.id, 1)    
-        self.assertEqual(tipoespecialidad.nombre, "Cardiología")
+        self.assertEqual(tipoespecialidad.nombre, "Cardiologia")
         self.assertEqual(tipoespecialidad.nivel, "Avanzado")
 
-    def test_busqueda(self):
-        tipoespecialidad = self.__nuevotipoespecialidad()
-        TipoEspecialidadService.crear(tipoespecialidad)
+    def test_buscar_por_id(self):
+        tipoespecialidad = nuevotipoespecialidad()
         r=TipoEspecialidadService.buscar_por_id(tipoespecialidad.id)
         self.assertIsNotNone(r)
         self.assertEqual(r.nombre, tipoespecialidad.nombre)
     
     def test_buscar_todos(self):
-        tipoespecialidad1 = self.__nuevotipoespecialidad()
-        tipoespecialidad2 = self.__nuevotipoespecialidad("pediatria", "Basico")
-        TipoEspecialidadService.crear(tipoespecialidad1)
-        TipoEspecialidadService.crear(tipoespecialidad2)
+        tipoespecialidad1 = nuevotipoespecialidad()
+        tipoespecialidad2 = nuevotipoespecialidad("pediatria", "Basico")
         tipoespecialidad = TipoEspecialidadService.buscar_todos()
         self.assertIsNotNone(tipoespecialidad)
         self.assertGreaterEqual(len(tipoespecialidad), 2)
 
     def test_actualizar(self):
-        tipoespecialidad = self.__nuevotipoespecialidad()
-        TipoEspecialidadService.crear(tipoespecialidad)
+        tipoespecialidad = nuevotipoespecialidad()
         tipoespecialidad.nombre = "Neurología"
         tipoespecialidad.nivel = "Intermedio"
         tipoespecialidad_actualizado = TipoEspecialidadService.actualizar(tipoespecialidad.id, tipoespecialidad)
@@ -56,15 +51,8 @@ class TipoEspecialidadTestCase(unittest.TestCase):
         self.assertEqual(tipoespecialidad_actualizado.nivel, "Intermedio")
 
     def test_borrar(self):
-        tipoespecialidad = self.__nuevotipoespecialidad()
-        TipoEspecialidadService.crear(tipoespecialidad)
+        tipoespecialidad = nuevotipoespecialidad()
         TipoEspecialidadService.borrar_por_id(tipoespecialidad.id)
         resultado =  TipoEspecialidadService.buscar_por_id(tipoespecialidad.id)
         self.assertIsNone(resultado)
     
-
-    def __nuevotipoespecialidad(self, nombre="Cardiología", nivel="Avanzado"):
-        tipoespecialidad = TipoEspecialidad()
-        tipoespecialidad.nombre = nombre
-        tipoespecialidad.nivel = nivel
-        return tipoespecialidad
