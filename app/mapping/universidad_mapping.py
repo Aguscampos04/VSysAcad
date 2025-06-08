@@ -1,5 +1,5 @@
 from marshmallow import fields, Schema, post_load, validate
-from app.models.universidad import Universidad
+from app.models import Universidad
 
 
 class UniversidadMapping(Schema):
