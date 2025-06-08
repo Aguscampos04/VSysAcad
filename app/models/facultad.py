@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from app import db
+from app.models.relations import facultades_autoridades
 
-#TODO agregar relaciones de autoridad y universidad 
 @dataclass(init=False, repr=True, eq=True)
 class Facultad(db.Model):
     __tablename__ = 'facultades'
@@ -21,3 +21,12 @@ class Facultad(db.Model):
     universidad_id: int = db.Column(db.Integer, db.ForeignKey('universidades.id'), nullable=False)
     universidad = db.relationship('Universidad', lazy=True)
 
+    autoridades = db.relationship('Autoridad', secondary=facultades_autoridades, back_populates='facultades')
+
+    def asociar_autoridad(self, autoridad):
+        if autoridad not in self.autoridades:
+            self.autoridades.append(autoridad)
+
+    def desasociar_autoridad(self, autoridad):
+        if autoridad in self.autoridades:
+            self.autoridades.remove(autoridad)

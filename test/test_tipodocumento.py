@@ -49,6 +49,7 @@ class TipoDocumentoTestCase(unittest.TestCase):
     
     def test_borrar(self):
         tipodocumento = nuevotipodocumento()
-        TipoDocumentoService.borrar_por_id(tipodocumento.id)
+        borrado = TipoDocumentoService.borrar_por_id(tipodocumento.id)
+        self.assertTrue(borrado)
         resultado = TipoDocumentoService.buscar_por_id(tipodocumento.id)
         self.assertIsNone(resultado)

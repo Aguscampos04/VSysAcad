@@ -1,5 +1,5 @@
 from app.models import Facultad
-from app.repositories import FacultadRepository
+from app.repositories import FacultadRepository, AutoridadRepository
 
 class FacultadService:
     
@@ -36,3 +36,19 @@ class FacultadService:
     @staticmethod
     def borrar_por_id(id: int) -> bool:
         return FacultadRepository.borrar_por_id(id)
+    
+    @staticmethod
+    def asociar_autoridad(facultad_id: int, autoridad_id: int):
+        facultad = FacultadRepository.buscar_por_id(facultad_id)
+        autoridad = AutoridadRepository.buscar_por_id(autoridad_id)
+        if not facultad or not autoridad:
+            raise ValueError("Facultad o autoridad no encontrada")
+        FacultadRepository.asociar_autoridad(facultad, autoridad)
+
+    @staticmethod
+    def desasociar_autoridad(facultad_id: int, autoridad_id: int):
+        facultad = FacultadRepository.buscar_por_id(facultad_id)
+        autoridad = AutoridadRepository.buscar_por_id(autoridad_id)
+        if not facultad or not autoridad:
+            raise ValueError("Facultad o autoridad no encontrada")
+        FacultadRepository.desasociar_autoridad(facultad, autoridad)

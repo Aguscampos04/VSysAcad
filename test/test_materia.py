@@ -49,8 +49,8 @@ class MateriaTestCase(unittest.TestCase):
         materia = nuevamateria()
         borrado = MateriaService.borrar_por_id(materia.id)
         self.assertTrue(borrado)
-        encontrado = MateriaService.buscar_por_id(materia.id)
-        self.assertIsNone(encontrado)
+        resultado = MateriaService.buscar_por_id(materia.id)
+        self.assertIsNone(resultado)
 
     def test_asociar_y_desasociar_autoridad(self):
         materia = nuevamateria()

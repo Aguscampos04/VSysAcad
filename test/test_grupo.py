@@ -41,6 +41,7 @@ class GrupoTestCase(unittest.TestCase):
 
     def test_borrar(self):
         grupo = nuevogrupo()
-        GrupoService.borrar_por_id(grupo.id)
+        borrado = GrupoService.borrar_por_id(grupo.id)
+        self.assertTrue(borrado)
         resultado = GrupoService.buscar_por_id(grupo.id)
         self.assertIsNone(resultado)

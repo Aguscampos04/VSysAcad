@@ -17,7 +17,6 @@ class GradoTestCase(unittest.TestCase):
         db.create_all()
 
     def tearDown(self):
-    
         db.session.remove()
         db.drop_all()
         self.app_context.pop()
@@ -51,7 +50,8 @@ class GradoTestCase(unittest.TestCase):
 
     def test_borrar(self):
         universidad = nuevogrado()
-        GradoService.borrar_por_id(universidad.id)
+        borrado = GradoService.borrar_por_id(universidad.id)
+        self.assertTrue(borrado)
         resultado = GradoService.buscar_por_id(universidad.id)
         self.assertIsNone(resultado)
 

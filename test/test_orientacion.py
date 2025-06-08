@@ -55,7 +55,8 @@ class OrientacionTestCase(unittest.TestCase):
 
     def test_borrar(self):
         orientacion = nuevaorientacion()
-        OrientacionService.borrar_por_id(orientacion.id)
+        borrado = OrientacionService.borrar_por_id(orientacion.id)
+        self.assertTrue(borrado)
         resultado = OrientacionService.buscar_por_id(orientacion.id)
         self.assertIsNone(resultado)
 

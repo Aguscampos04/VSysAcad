@@ -54,7 +54,8 @@ class PlanTestCase(unittest.TestCase):
 
     def test_borrar_por_id(self):
         plan = nuevoplan()
-        PlanService.borrar_por_id(plan.id)
+        borrado = PlanService.borrar_por_id(plan.id)
+        self.assertTrue(borrado)
         r = PlanService.buscar_por_id(plan.id)
         self.assertIsNone(r)
 

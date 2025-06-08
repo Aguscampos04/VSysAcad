@@ -1,5 +1,5 @@
 from app.models import Autoridad
-from app.repositories import AutoridadRepository, MateriaRepository
+from app.repositories import AutoridadRepository, MateriaRepository,FacultadRepository
 from app import db
 
 class AutoridadService:
@@ -35,8 +35,7 @@ class AutoridadService:
         materia = MateriaRepository.buscar_por_id(materia_id)
         if not autoridad or not materia:
             raise ValueError("Materia o autoridad no encontrada")
-        autoridad.asociar_materia(materia)
-        
+        AutoridadRepository.asociar_materia(autoridad, materia)
 
     @staticmethod
     def desasociar_materia(autoridad_id: int, materia_id: int):
@@ -44,5 +43,22 @@ class AutoridadService:
         materia = MateriaRepository.buscar_por_id(materia_id)
         if not autoridad or not materia:
             raise ValueError("Materia o autoridad no encontrada")
-        autoridad.desasociar_materia(materia)
+        AutoridadRepository.desasociar_materia(autoridad, materia)
         
+
+
+    @staticmethod
+    def asociar_facultad(autoridad_id: int, facultad_id: int):
+        autoridad = AutoridadRepository.buscar_por_id(autoridad_id)
+        facultad = FacultadRepository.buscar_por_id(facultad_id)
+        if not autoridad or not facultad:
+            raise ValueError("Facultad o autoridad no encontrada")
+        AutoridadRepository.asociar_facultad(autoridad, facultad)
+
+    @staticmethod
+    def desasociar_facultad(autoridad_id: int, facultad_id: int):
+        autoridad = AutoridadRepository.buscar_por_id(autoridad_id)
+        facultad = FacultadRepository.buscar_por_id(facultad_id)
+        if not autoridad or not facultad:
+            raise ValueError("Facultad o autoridad no encontrada")
+        AutoridadRepository.desasociar_facultad(autoridad, facultad)

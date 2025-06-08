@@ -49,7 +49,8 @@ class DepartamentoTestCase(unittest.TestCase):
     
     def test_borrar(self):
         departamento = nuevodepartamento()
-        DepartamentoService.borrar_por_id(departamento.id)
+        borrado= DepartamentoService.borrar_por_id(departamento.id)
+        self.assertTrue(borrado)
         resultado = DepartamentoService.buscar_por_id(departamento.id)
         self.assertIsNone(resultado)
         

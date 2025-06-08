@@ -67,9 +67,11 @@ class AlumnoTestCase(unittest.TestCase):
         alumno_actualizado = AlumnoService.actualizar(alumno.id, alumno)
         self.assertEqual(alumno_actualizado.nombre, "Juan actualizado")
     
+    
     def test_borrar(self):
         alumno = nuevoalumno()
-        AlumnoService.borrar_por_id(alumno.id)
+        borrado = AlumnoService.borrar_por_id(alumno.id)
+        self.assertTrue(borrado)
         resultado = AlumnoService.buscar_por_id(alumno.id)
         self.assertIsNone(resultado)
 

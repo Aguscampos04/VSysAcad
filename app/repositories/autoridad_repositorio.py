@@ -1,5 +1,5 @@
 from app import db
-from app.models import Autoridad, Materia
+from app.models import Autoridad, Materia, Facultad
 
 class AutoridadRepository:
     @staticmethod
@@ -39,4 +39,14 @@ class AutoridadRepository:
     @staticmethod
     def desasociar_materia(autoridad: Autoridad, materia: Materia):
         autoridad.desasociar_materia(materia)
+        db.session.commit()
+
+    @staticmethod
+    def asociar_facultad(autoridad: Autoridad, facultad:Facultad):
+        autoridad.asociar_facultad(facultad)
+        db.session.commit()
+
+    @staticmethod
+    def desasociar_facultad(autoridad: Autoridad, facultad: Facultad):
+        autoridad.desasociar_facultad(facultad)
         db.session.commit()

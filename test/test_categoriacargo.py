@@ -49,7 +49,8 @@ class CategoriaCargoTestCase(unittest.TestCase):
 
     def test_borrar(self):
         categoria = nuevacategoriacargo()
-        CategoriaCargoService.borrar_por_id(categoria.id)
+        borrado= CategoriaCargoService.borrar_por_id(categoria.id)
+        self.assertTrue(borrado)
         resultado = CategoriaCargoService.buscar_por_id(categoria.id)
         self.assertIsNone(resultado)
 
