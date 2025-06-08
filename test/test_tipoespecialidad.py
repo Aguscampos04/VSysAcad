@@ -52,7 +52,8 @@ class TipoEspecialidadTestCase(unittest.TestCase):
 
     def test_borrar(self):
         tipoespecialidad = nuevotipoespecialidad()
-        TipoEspecialidadService.borrar_por_id(tipoespecialidad.id)
+        borrado = TipoEspecialidadService.borrar_por_id(tipoespecialidad.id)
+        self.assertTrue(borrado)
         resultado =  TipoEspecialidadService.buscar_por_id(tipoespecialidad.id)
         self.assertIsNone(resultado)
     

@@ -51,7 +51,8 @@ class CargoTestCase(unittest.TestCase):
 
     def test_borrar(self):
         cargo = nuevocargo()
-        CargoService.borrar_por_id(cargo.id)
+        borrado= CargoService.borrar_por_id(cargo.id)
+        self.assertTrue(borrado)
         resultado = CargoService.buscar_por_id(cargo.id)
         self.assertIsNone(resultado)
     

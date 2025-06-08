@@ -50,6 +50,7 @@ class UniversidadTestCase(unittest.TestCase):
 
     def test_borrar(self):
         universidad = nuevauniversidad()
-        UniversidadService.borrar_por_id(universidad.id)
+        borrado = UniversidadService.borrar_por_id(universidad.id)
+        self.assertTrue(borrado)
         resultado = UniversidadService.buscar_por_id(universidad.id)
         self.assertIsNone(resultado)

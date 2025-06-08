@@ -50,7 +50,8 @@ class TipoDedicacionTestCase(unittest.TestCase):
 
     def test_borrar(self):
         tipodedicacion = nuevotipodedicacion()
-        TipoDedicacionService.borrar_por_id(tipodedicacion.id)
+        borrado = TipoDedicacionService.borrar_por_id(tipodedicacion.id)
+        self.assertTrue(borrado)
         resultado = TipoDedicacionService.buscar_por_id(tipodedicacion.id)
         self.assertIsNone(resultado)
 

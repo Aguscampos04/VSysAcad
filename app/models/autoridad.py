@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from app.models import Cargo
-from app.models.relations import autoridades_materias 
+from app.models.relations import autoridades_materias , facultades_autoridades
 from app import db
 
 @dataclass(init=False, repr=True, eq=True)
@@ -18,6 +18,9 @@ class Autoridad(db.Model):
 
     materias = db.relationship('Materia', secondary=autoridades_materias, back_populates='autoridades')
 
+    facultades = db.relationship('Facultad', secondary=facultades_autoridades, back_populates='autoridades')
+
+
     def asociar_materia(self, materia):
         if materia not in self.materias:
             self.materias.append(materia)
@@ -25,3 +28,11 @@ class Autoridad(db.Model):
     def desasociar_materia(self, materia):
         if materia in self.materias:
             self.materias.remove(materia)
+
+    def asociar_facultad(self, facultad):
+        if facultad not in self.facultades:
+            self.facultades.append(facultad)
+            
+    def desasociar_facultad(self, facultad):
+        if facultad in self.facultades:
+            self.facultades.remove(facultad)

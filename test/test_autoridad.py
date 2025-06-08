@@ -1,8 +1,8 @@
 import unittest
 from app import create_app, db
 from app.models import Autoridad, Materia
-from app.services import AutoridadService, MateriaService
-from test.instancias import nuevaautoridad, nuevamateria
+from app.services import AutoridadService
+from test.instancias import nuevaautoridad, nuevamateria, nuevafacultad
 
 class AutoridadTestCase(unittest.TestCase):
     def setUp(self):
@@ -17,9 +17,14 @@ class AutoridadTestCase(unittest.TestCase):
         self.app_context.pop()
 
     def test_crear(self):
-        autoridad = nuevaautoridad()
+        facultad = nuevafacultad()
+        materia = nuevamateria()
+        autoridad = nuevaautoridad(materias=[materia], facultades=[facultad])
         self.assertIsNotNone(autoridad.id)
         self.assertEqual(autoridad.nombre, "Pelo")
+        self.assertIn(materia, autoridad.materias)
+        self.assertIn(facultad, autoridad.facultades)
+        
 
     def test_buscar_por_id(self):
         autoridad = nuevaautoridad()
@@ -47,8 +52,8 @@ class AutoridadTestCase(unittest.TestCase):
         autoridad = nuevaautoridad()
         borrado = AutoridadService.borrar_por_id(autoridad.id)
         self.assertTrue(borrado)
-        encontrado = AutoridadService.buscar_por_id(autoridad.id)
-        self.assertIsNone(encontrado)
+        resultado = AutoridadService.buscar_por_id(autoridad.id)
+        self.assertIsNone(resultado)
 
     def test_relacion_materias(self):
         autoridad = nuevaautoridad()
@@ -70,3 +75,31 @@ class AutoridadTestCase(unittest.TestCase):
         db.session.commit()
         self.assertNotIn(materia1, autoridad.materias)
         self.assertNotIn(autoridad, materia1.autoridades)
+
+    def test_asociar_y_desasociar_materia(self):
+        autoridad = nuevaautoridad()
+        materia = nuevamateria()
+
+        # Asociar materia
+        AutoridadService.asociar_materia(autoridad.id, materia.id)
+        autoridad_actualizada = AutoridadService.buscar_por_id(autoridad.id)
+        self.assertIn(materia, autoridad_actualizada.materias)
+
+        # Desasociar materia
+        AutoridadService.desasociar_materia(autoridad.id, materia.id)
+        autoridad_actualizada = AutoridadService.buscar_por_id(autoridad.id)
+        self.assertNotIn(materia, autoridad_actualizada.materias)
+
+    def test_asociar_y_desasociar_facultad(self):
+        facultad = nuevafacultad()
+        autoridad = nuevaautoridad()
+
+        # Asociar facultad
+        AutoridadService.asociar_facultad(autoridad.id, facultad.id)
+        autoridad_actualizada = AutoridadService.buscar_por_id(autoridad.id)
+        self.assertIn(facultad, autoridad_actualizada.facultades)
+
+        # Desasociar facultad
+        AutoridadService.desasociar_facultad(autoridad.id, facultad.id)
+        autoridad_actualizada = AutoridadService.buscar_por_id(autoridad.id)
+        self.assertNotIn(facultad, autoridad_actualizada.facultades)

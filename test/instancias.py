@@ -45,7 +45,7 @@ def nuevocargo(nombre="Profesor", puntos=10, categoria_cargo=None, tipo_dedicaci
 
 def nuevafacultad(nombre="Facultad de Ciencias", abreviatura="FCC", directorio="/facultad/ciencias",
                   sigla="FC", codigopostal="12345", ciudad="Ciudad", domicilio="Calle 123",
-                  telefono="123456789", contacto="Juan Perez", email="1234@gmail.com", universidad=None):
+                  telefono="123456789", contacto="Juan Perez", email="1234@gmail.com", universidad=None, autoridades=None):
     facultad = Facultad()
     facultad.nombre = nombre
     facultad.abreviatura = abreviatura
@@ -58,6 +58,11 @@ def nuevafacultad(nombre="Facultad de Ciencias", abreviatura="FCC", directorio="
     facultad.contacto = contacto
     facultad.email = email
     facultad.universidad = universidad or nuevauniversidad()
+
+    if autoridades is None:
+        autoridades = []
+    facultad.autoridades = autoridades
+
     FacultadService.crear(facultad)
     return facultad
 
@@ -154,11 +159,21 @@ def nuevoalumno(nombre="Juan", apellido="Pérez", nrodocumento="46291002", tipo_
     AlumnoService.crear(alumno)
     return alumno
 
-def nuevaautoridad(nombre="Pelo", cargo=None, telefono="123456789", email="123@gmail.com"):
+def nuevaautoridad(nombre="Pelo", cargo=None, telefono="123456789", email="123@gmail.com", 
+                   materias=None, facultades=None):
     autoridad = Autoridad()
     autoridad.nombre = nombre
     autoridad.cargo = cargo or nuevocargo()
     autoridad.telefono = telefono
     autoridad.email = email
+
+    if materias is None:
+        materias = []
+    autoridad.materias = materias
+
+    if facultades is None:
+        facultades = []
+    autoridad.facultades = facultades
+    
     AutoridadService.crear(autoridad)
     return autoridad

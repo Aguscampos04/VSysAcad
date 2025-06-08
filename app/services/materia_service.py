@@ -28,6 +28,8 @@ class MateriaService:
     def borrar_por_id(id: int) -> bool:
         return MateriaRepository.borrar_por_id(id)
 
+
+
     @staticmethod
     def asociar_autoridad(materia_id: int, autoridad_id: int):
         materia = MateriaRepository.buscar_por_id(materia_id)

@@ -48,6 +48,7 @@ class AreaTestCase(unittest.TestCase):
 
     def test_borrar(self):
         area = nuevaarea()
-        AreaService.borrar_por_id(area.id)
+        borrado= AreaService.borrar_por_id(area.id)
+        self.assertTrue(borrado)
         resultado = AreaService.buscar_por_id(area.id)
         self.assertIsNone(resultado)
