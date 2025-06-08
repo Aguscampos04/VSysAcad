@@ -45,7 +45,7 @@ def nuevocargo(nombre="Profesor", puntos=10, categoria_cargo=None, tipo_dedicaci
 
 def nuevafacultad(nombre="Facultad de Ciencias", abreviatura="FCC", directorio="/facultad/ciencias",
                   sigla="FC", codigopostal="12345", ciudad="Ciudad", domicilio="Calle 123",
-                  telefono="123456789", contacto="Juan Perez", email="1234@gmail.com"):
+                  telefono="123456789", contacto="Juan Perez", email="1234@gmail.com", universidad=None):
     facultad = Facultad()
     facultad.nombre = nombre
     facultad.abreviatura = abreviatura
@@ -57,6 +57,7 @@ def nuevafacultad(nombre="Facultad de Ciencias", abreviatura="FCC", directorio="
     facultad.telefono = telefono
     facultad.contacto = contacto
     facultad.email = email
+    facultad.universidad = universidad or nuevauniversidad()
     FacultadService.crear(facultad)
     return facultad
 
