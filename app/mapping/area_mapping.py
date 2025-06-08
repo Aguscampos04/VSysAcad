@@ -3,7 +3,7 @@ from app.models import Area
 
 class AreaMapping(Schema):
     id = fields.Integer()
-    nombre = fields.String(required=True, validate=validate.Length(min=1, max=100))
+    nombre = fields.String(required=True, validate=validate.Length(min=1, max=50))
     
     @post_load
     def nueva_area(self, data, **kwargs):
