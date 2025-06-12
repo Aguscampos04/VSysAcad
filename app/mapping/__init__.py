@@ -1,4 +1,4 @@
 from .universidad_mapping import UniversidadMapping
 from .area_mapping import AreaMapping
-from .tipodocumento_mapping import TipodocumentoMapping
+from .tipodocumento_mapping import TipoDocumentoMapping
 from .tipodedicacion_mapping import TipoDedicacionMapping
