@@ -1,7 +1,7 @@
 from marshmallow import fields, Schema, post_load, validate
 from app.models import TipoDocumento
 
-class TipodocumentoMapping(Schema):
+class TipoDocumentoMapping(Schema):
     id = fields.Integer()
     dni = fields.Integer(required=True, validate=validate.Range(min=1000000, max=99999999))
     libreta_civica = fields.String(required=True, validate=validate.Length(min=1, max=20))

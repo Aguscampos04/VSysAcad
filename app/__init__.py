@@ -29,7 +29,7 @@ def create_app() -> Flask:
     app.register_blueprint(universidad_bp, url_prefix='/api/v1')
     app.register_blueprint(area_bp, url_prefix='/api/v1')
     app.register_blueprint(tipodocumento_bp, url_prefix='/api/v1')
-    app.register_blueprint(tipodedicacion_bp, url_prefix='/api/vi')
+    app.register_blueprint(tipodedicacion_bp, url_prefix='/api/v1')
 
     @app.shell_context_processor    
     def ctx():

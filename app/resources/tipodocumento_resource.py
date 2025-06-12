@@ -1,10 +1,10 @@
 from flask import jsonify, Blueprint, request
 
-from app.mapping.tipodocumento_mapping import TipodocumentoMapping
+from app.mapping.tipodocumento_mapping import TipoDocumentoMapping
 from app.services.tipodocumento_service import TipoDocumentoService
 
 tipodocumento_bp = Blueprint('tipodocumento', __name__)
-tipodocumento_mapping = TipodocumentoMapping()
+tipodocumento_mapping = TipoDocumentoMapping()
 
 @tipodocumento_bp.route('/tipodocumento', methods=['GET'])
 def buscar_todos():
