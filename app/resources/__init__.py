@@ -5,3 +5,4 @@ from.tipodocumento_resource import tipodocumento_bp
 from.tipodedicacion_resource import tipodedicacion_bp
 from.categoriacargo_resource import categoriacargo_bp
 from.grupo_resource import grupo_bp
+from.plan_resource import plan_bp

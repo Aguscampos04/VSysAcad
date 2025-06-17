@@ -4,3 +4,4 @@ from .tipodocumento_mapping import TipoDocumentoMapping
 from .tipodedicacion_mapping import TipoDedicacionMapping
 from .categoriacargo_mapping import CategoriaCargoMapping
 from .grupo_mapping import GrupoMapping
+from .plan_mapping import PlanMapping
