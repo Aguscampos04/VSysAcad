@@ -7,8 +7,9 @@ from flask_sqlalchemy import SQLAlchemy
 from app.config import config
 
 db = SQLAlchemy()
-migrate=Migrate()
-ma=Marshmallow()
+migrate = Migrate()
+ma = Marshmallow()
+
 
 def create_app() -> Flask:
     """
@@ -16,15 +17,15 @@ def create_app() -> Flask:
     Ref: Book Flask Web Development Page 78
     """
     app_context = os.getenv('FLASK_CONTEXT')
-    #https://flask.palletsprojects.com/en/stable/api/#flask.Flask
+    # https://flask.palletsprojects.com/en/stable/api/#flask.Flask
     app = Flask(__name__)
     f = config.factory(app_context if app_context else 'development')
     app.config.from_object(f)
     db.init_app(app)
-    migrate.init_app(app,db)
+    migrate.init_app(app, db)
     ma.init_app(app)
 
-    from app.resources import home, universidad_bp, area_bp, tipodocumento_bp, tipodedicacion_bp, categoriacargo_bp, grupo_bp
+    from app.resources import home, universidad_bp, area_bp, tipodocumento_bp, tipodedicacion_bp, categoriacargo_bp, grupo_bp, grado_bp
     app.register_blueprint(home, url_prefix='/api/v1')
     app.register_blueprint(universidad_bp, url_prefix='/api/v1')
     app.register_blueprint(area_bp, url_prefix='/api/v1')
@@ -32,9 +33,10 @@ def create_app() -> Flask:
     app.register_blueprint(tipodedicacion_bp, url_prefix='/api/v1')
     app.register_blueprint(categoriacargo_bp, url_prefix='/api/v1')
     app.register_blueprint(grupo_bp, url_prefix='/api/v1/')
+    app.register_blueprint(grado_bp, url_prefix='/api/v1')
 
-    @app.shell_context_processor    
+    @app.shell_context_processor
     def ctx():
         return {"app": app}
-    
+
     return app
