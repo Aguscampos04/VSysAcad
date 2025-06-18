@@ -5,4 +5,4 @@ from .tipodedicacion_mapping import TipoDedicacionMapping
 from .categoriacargo_mapping import CategoriaCargoMapping
 from .grupo_mapping import GrupoMapping
 from .grado_mapping import GradoMapping
-from departamento_mapping import DepartamentoMapping
+from .departamento_mapping import DepartamentoMapping

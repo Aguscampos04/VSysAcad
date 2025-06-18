@@ -25,7 +25,7 @@ def create_app() -> Flask:
     migrate.init_app(app, db)
     ma.init_app(app)
 
-    from app.resources import home, universidad_bp, area_bp, tipodocumento_bp, tipodedicacion_bp, categoriacargo_bp, grupo_bp, grado_bp, departamento_bp
+    from app.resources import home, universidad_bp, area_bp, tipodocumento_bp, tipodedicacion_bp, categoriacargo_bp, grupo_bp, grado_bp, departamento_bp, certificado_bp
     app.register_blueprint(home, url_prefix='/api/v1')
     app.register_blueprint(universidad_bp, url_prefix='/api/v1')
     app.register_blueprint(area_bp, url_prefix='/api/v1')
@@ -35,6 +35,7 @@ def create_app() -> Flask:
     app.register_blueprint(grupo_bp, url_prefix='/api/v1/')
     app.register_blueprint(grado_bp, url_prefix='/api/v1')
     app.register_blueprint(departamento_bp, url_prefix='/api/v1')
+    app.register_blueprint(certificado_bp, url_prefix='/api/v1')
 
     @app.shell_context_processor
     def ctx():
