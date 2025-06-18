@@ -1,5 +1,8 @@
+from flask import render_template
 from app.models import Alumno
 from app.repositories import AlumnoRepository
+from app.services import FacultadService, EspecialidadService
+from datetime import datetime
 
 class AlumnoService:
 
@@ -30,7 +33,16 @@ class AlumnoService:
         alumno_existente.fecha_ingreso = alumno.fecha_ingreso
         return alumno_existente
         
-    
     @staticmethod
     def borrar_por_id(id: int) -> bool:
         return AlumnoRepository.borrar_por_id(id)
+    
+    #siempre se llama de service a service de otros modelos
+    @staticmethod
+    def generar_certificado_alumno_regular(id: int):
+        alumno = AlumnoRepository.buscar_por_id(id)
+        #TODO agregar relacion alumno con facultad y especialidad
+        facultad = FacultadService.buscar_por_id(19) #entre parentesis se pone alumno.facultad_id
+        fecha = datetime.now()
+        especialidad = EspecialidadService.buscar_por_id(5)
+        return render_template("certificado/certificado.html", alumno=alumno, facultad=facultad, fecha=fecha, especialidad=especialidad)

@@ -12,3 +12,5 @@ class Especialidad(db.Model):
     
     tipoespecialidad_id: int = db.Column(db.Integer, db.ForeignKey('tipoespecialidades.id'), nullable=False)
     tipoespecialidad = db.relationship('TipoEspecialidad',  lazy=True)
+
+    #TODO especialidad muchos a uno con facultad

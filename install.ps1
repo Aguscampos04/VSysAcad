@@ -7,3 +7,5 @@
 & "$env:USERPROFILE\environments\gral_env\Scripts\Activate.ps1"
 
 pip3 install -r requirements.txt
+
+#TODO para instalar rapido las librerias 
