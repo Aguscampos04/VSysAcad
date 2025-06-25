@@ -8,3 +8,4 @@ from .categoriacargo_resource import categoriacargo_bp
 from .grupo_resource import grupo_bp
 from .departamento_resource import departamento_bp
 from .certificado_resource import certificado_bp
+from.tipo_especialidad_resource import tipo_especialidad_bp
