@@ -1,8 +1,8 @@
-from flask import render_template
+import datetime
+from io import BytesIO
 from app.models import Alumno
 from app.repositories import AlumnoRepository
-from app.services import FacultadService, EspecialidadService
-from datetime import datetime
+from app.services.documentos_office_service import PDFDocument, ODTDocument, DOCXDocument, Document, obtener_tipo_documento
 
 class AlumnoService:
 
@@ -31,18 +31,45 @@ class AlumnoService:
         alumno_existente.sexo = alumno.sexo
         alumno_existente.nro_legajo = alumno.nro_legajo
         alumno_existente.fecha_ingreso = alumno.fecha_ingreso
+        alumno_existente.especialidad = alumno.especialidad
         return alumno_existente
         
     @staticmethod
     def borrar_por_id(id: int) -> bool:
         return AlumnoRepository.borrar_por_id(id)
     
-    #siempre se llama de service a service de otros modelos
     @staticmethod
-    def generar_certificado_alumno_regular(id: int):
+    def generar_certificado_alumno_regular(id: int,tipo: str)-> BytesIO:
         alumno = AlumnoRepository.buscar_por_id(id)
-        #TODO agregar relacion alumno con facultad y especialidad
-        facultad = FacultadService.buscar_por_id(19) #entre parentesis se pone alumno.facultad_id
-        fecha = datetime.now()
-        especialidad = EspecialidadService.buscar_por_id(5)
-        return render_template("certificado/certificado.html", alumno=alumno, facultad=facultad, fecha=fecha, especialidad=especialidad)
+        if not alumno:
+            return None
+        
+        context = AlumnoService.__obteneralumno(alumno)
+        documento = obtener_tipo_documento(tipo)
+        if not documento:
+            return None
+        
+        return documento.generar(
+            carpeta='certificado',
+            plantilla='certificado_pdf',
+            context=context
+        )
+    
+    @staticmethod
+    def __obtener_fechaactual():
+        fecha_actual = datetime.datetime.now()
+        fecha_str = fecha_actual.strftime('%d de %B de %Y')
+        return fecha_str
+
+    @staticmethod
+    def __obteneralumno(alumno: Alumno) -> dict:
+        especialidad = alumno.especialidad
+        facultad = especialidad.facultad
+        universidad = facultad.universidad
+        return{
+            "alumno": alumno,
+            "especialidad": especialidad,
+            "facultad": facultad,
+            "universidad": universidad,
+            "fecha":AlumnoService.__obtener_fechaactual()
+        }

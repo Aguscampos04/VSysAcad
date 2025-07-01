@@ -8,5 +8,7 @@ psycopg[binary]
 python-dotenv==1.1.0
 flask_Migrate==4.1.0
 weasyprint == 65.1 #Transforma html a pdf
+python-odt-template==0.5.1
+docxtpl==0.20.0
 
 #TODO buscar para que sirve cada libreria
