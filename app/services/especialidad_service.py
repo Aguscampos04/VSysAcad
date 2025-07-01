@@ -24,6 +24,7 @@ class EspecialidadService:
         especialidad_existente.letra = especialidad.letra
         especialidad_existente.observacion = especialidad.observacion
         especialidad_existente.tipoespecialidad = especialidad.tipoespecialidad
+        especialidad_existente.facultad = especialidad.facultad
         return especialidad_existente
     
     @staticmethod

@@ -15,3 +15,4 @@ from .cargo_service import CargoService
 from .orientacion_service import OrientacionService
 from .autoridad_service import AutoridadService
 from .facultad_service import FacultadService
+from .documentos_office_service import PDFDocument, ODTDocument, DOCXDocument
