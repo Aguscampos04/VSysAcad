@@ -5,11 +5,12 @@ from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from app.config import config
+from flask_hashids import Hashids
 
 db = SQLAlchemy()
 migrate = Migrate()
 ma = Marshmallow()
-
+hashids = Hashids()
 
 def create_app() -> Flask:
     """
@@ -23,6 +24,7 @@ def create_app() -> Flask:
     app.config.from_object(f)
     db.init_app(app)
     migrate.init_app(app, db)
+    hashids.init_app(app)
     ma.init_app(app)
 
     from app.resources import home, universidad_bp, area_bp, tipodocumento_bp, tipodedicacion_bp, categoriacargo_bp, grupo_bp, grado_bp, departamento_bp, certificado_bp, tipo_especialidad_bp, plan_bp
