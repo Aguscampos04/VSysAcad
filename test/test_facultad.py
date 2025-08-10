@@ -28,6 +28,7 @@ class FacultadTestCase(unittest.TestCase):
         self.assertEqual(facultad.universidad.nombre,"Universidad Nacional")
         self.assertGreaterEqual(facultad.id, 1)
         self.assertEqual(facultad.nombre, "Facultad de Ciencias")
+        # pyrefly: ignore  # bad-argument-type
         self.assertIn(autoridad, facultad.autoridades)
 
     def test_buscar_por_id(self):
@@ -69,9 +70,11 @@ class FacultadTestCase(unittest.TestCase):
         # Asociar autoridad
         FacultadService.asociar_autoridad(facultad.id, autoridad.id)
         facultad_actualizada = FacultadService.buscar_por_id(facultad.id)
+        # pyrefly: ignore  # bad-argument-type
         self.assertIn(autoridad, facultad_actualizada.autoridades)
         
         # Desasociar autoridad
         FacultadService.desasociar_autoridad(facultad.id, autoridad.id)
         facultad_actualizada = FacultadService.buscar_por_id(facultad.id)
+        # pyrefly: ignore  # bad-argument-type
         self.assertNotIn(autoridad, facultad_actualizada.autoridades)

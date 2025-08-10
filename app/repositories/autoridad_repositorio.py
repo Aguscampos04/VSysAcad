@@ -19,6 +19,7 @@ class AutoridadRepository:
     def actualizar(autoridad) -> Autoridad:
         autoridad_existente = db.session.merge(autoridad)
         if not autoridad_existente:
+            # pyrefly: ignore  # bad-return
             return None
         return autoridad_existente
 

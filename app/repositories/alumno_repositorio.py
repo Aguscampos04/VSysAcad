@@ -19,6 +19,7 @@ class AlumnoRepository:
     def actualizar(alumno) -> Alumno:
         alumno_existente = db.session.merge(alumno)
         if not alumno_existente:
+            # pyrefly: ignore  # bad-return
             return None
         return alumno_existente
     

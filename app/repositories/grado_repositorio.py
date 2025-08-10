@@ -22,6 +22,7 @@ class GradoRepository:
     def actualizar(grado) -> Grado:
         grado_existente = db.session.merge(grado)
         if not grado_existente:
+            # pyrefly: ignore  # bad-return
             return None
         return grado_existente 
     

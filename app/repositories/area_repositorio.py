@@ -19,6 +19,7 @@ class AreaRepository:
     def actualizar(area) -> Area:
         area_existente = db.session.merge(area)
         if not area_existente:
+            # pyrefly: ignore  # bad-return
             return None
         return area_existente
     

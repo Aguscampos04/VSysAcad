@@ -20,6 +20,7 @@ class CategoriaCargoRepository:
     def actualizar(categoria) -> CategoriaCargo:
         categoria_existente = db.session.merge(categoria)
         if not categoria_existente:
+            # pyrefly: ignore  # bad-return
             return None
         return categoria_existente
     

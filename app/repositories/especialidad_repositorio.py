@@ -20,6 +20,7 @@ class EspecialidadRepository:
     def actualizar(especialidad) -> Especialidad:
         especialidad_existente = db.session.merge(especialidad)
         if not especialidad_existente:
+            # pyrefly: ignore  # bad-return
             return None
         return especialidad_existente
     

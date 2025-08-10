@@ -22,7 +22,9 @@ class AutoridadTestCase(unittest.TestCase):
         autoridad = nuevaautoridad(materias=[materia], facultades=[facultad])
         self.assertIsNotNone(autoridad.id)
         self.assertEqual(autoridad.nombre, "Pelo")
+        # pyrefly: ignore  # bad-argument-type
         self.assertIn(materia, autoridad.materias)
+        # pyrefly: ignore  # bad-argument-type
         self.assertIn(facultad, autoridad.facultades)
         
 
@@ -65,15 +67,21 @@ class AutoridadTestCase(unittest.TestCase):
         autoridad.materias.append(materia2)
         db.session.commit()
 
+        # pyrefly: ignore  # bad-argument-type
         self.assertIn(materia1, autoridad.materias)
+        # pyrefly: ignore  # bad-argument-type
         self.assertIn(materia2, autoridad.materias)
+        # pyrefly: ignore  # bad-argument-type
         self.assertIn(autoridad, materia1.autoridades)
+        # pyrefly: ignore  # bad-argument-type
         self.assertIn(autoridad, materia2.autoridades)
 
         # Desasociar una materia
         autoridad.materias.remove(materia1)
         db.session.commit()
+        # pyrefly: ignore  # bad-argument-type
         self.assertNotIn(materia1, autoridad.materias)
+        # pyrefly: ignore  # bad-argument-type
         self.assertNotIn(autoridad, materia1.autoridades)
 
     def test_asociar_y_desasociar_materia(self):
@@ -83,11 +91,13 @@ class AutoridadTestCase(unittest.TestCase):
         # Asociar materia
         AutoridadService.asociar_materia(autoridad.id, materia.id)
         autoridad_actualizada = AutoridadService.buscar_por_id(autoridad.id)
+        # pyrefly: ignore  # bad-argument-type
         self.assertIn(materia, autoridad_actualizada.materias)
 
         # Desasociar materia
         AutoridadService.desasociar_materia(autoridad.id, materia.id)
         autoridad_actualizada = AutoridadService.buscar_por_id(autoridad.id)
+        # pyrefly: ignore  # bad-argument-type
         self.assertNotIn(materia, autoridad_actualizada.materias)
 
     def test_asociar_y_desasociar_facultad(self):
@@ -97,9 +107,11 @@ class AutoridadTestCase(unittest.TestCase):
         # Asociar facultad
         AutoridadService.asociar_facultad(autoridad.id, facultad.id)
         autoridad_actualizada = AutoridadService.buscar_por_id(autoridad.id)
+        # pyrefly: ignore  # bad-argument-type
         self.assertIn(facultad, autoridad_actualizada.facultades)
 
         # Desasociar facultad
         AutoridadService.desasociar_facultad(autoridad.id, facultad.id)
         autoridad_actualizada = AutoridadService.buscar_por_id(autoridad.id)
+        # pyrefly: ignore  # bad-argument-type
         self.assertNotIn(facultad, autoridad_actualizada.facultades)

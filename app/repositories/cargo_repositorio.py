@@ -21,6 +21,7 @@ class CargoRepository:
     def actualizar(cargo) -> Cargo:
         Cargo_existente = db.session.merge(cargo)
         if not Cargo_existente:
+            # pyrefly: ignore  # bad-return
             return None
         return Cargo_existente
     

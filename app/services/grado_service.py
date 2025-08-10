@@ -10,6 +10,7 @@ class GradoService:
 
     @staticmethod
     def buscar_por_id(id: int) -> Grado:
+        # pyrefly: ignore  # bad-return
         return GradoRepository.buscar_por_id(id)
 
     @staticmethod
@@ -20,6 +21,7 @@ class GradoService:
     def actualizar(id: int, grado: Grado) -> Grado:
         grado_existente = GradoRepository.buscar_por_id(grado.id)
         if not grado_existente:
+            # pyrefly: ignore  # bad-return
             return None
         grado_existente.nombre = grado.nombre
         grado_existente.descripcion = grado.descripcion

@@ -12,6 +12,7 @@ class AlumnoService:
 
     @staticmethod
     def buscar_por_id(id: int) -> Alumno:        
+        # pyrefly: ignore  # bad-return
         return AlumnoRepository.buscar_por_id(id)
 
     @staticmethod
@@ -22,6 +23,7 @@ class AlumnoService:
     def actualizar(id: int, alumno: Alumno) -> Alumno:
         alumno_existente = AlumnoRepository.buscar_por_id(id)
         if not alumno_existente:
+            # pyrefly: ignore  # bad-return
             return None
         alumno_existente.nombre = alumno.nombre
         alumno_existente.apellido = alumno.apellido
@@ -42,13 +44,16 @@ class AlumnoService:
     def generar_certificado_alumno_regular(id: int,tipo: str)-> BytesIO:
         alumno = AlumnoRepository.buscar_por_id(id)
         if not alumno:
+            # pyrefly: ignore  # bad-return
             return None
         
         context = AlumnoService.__obteneralumno(alumno)
         documento = obtener_tipo_documento(tipo)
         if not documento:
+            # pyrefly: ignore  # bad-return
             return None
         
+        # pyrefly: ignore  # missing-argument
         return documento.generar(
             carpeta='certificado',
             plantilla='certificado_pdf',
