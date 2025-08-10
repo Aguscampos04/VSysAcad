@@ -17,6 +17,7 @@ class PlanRepository:
     def actualizar(plan: Plan) -> Plan:
         plan_existente = db.session.merge(plan)
         if not plan_existente:
+            # pyrefly: ignore  # bad-return
             return None
         return plan_existente
     

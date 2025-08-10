@@ -9,6 +9,7 @@ class TipoDocumentoService:
 
     @staticmethod
     def buscar_por_id(id: int) -> TipoDocumento:
+        # pyrefly: ignore  # bad-return
         return TipoDocumentoRepository.buscar_por_id(id)
 
     @staticmethod
@@ -19,6 +20,7 @@ class TipoDocumentoService:
     def actualizar(id: int, tipodocumento: TipoDocumento) -> TipoDocumento:
         tipodocumento_existente = TipoDocumentoRepository.buscar_por_id(id)
         if not tipodocumento_existente:
+            # pyrefly: ignore  # bad-return
             return None
         tipodocumento_existente.dni = tipodocumento.dni
         tipodocumento_existente.libreta_civica = tipodocumento.libreta_civica

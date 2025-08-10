@@ -8,6 +8,7 @@ class OrientacionService:
 
     @staticmethod
     def buscar_por_id(id: int) -> Orientacion:        
+        # pyrefly: ignore  # bad-return
         return OrientacionRepository.buscar_por_id(id)
     
     @staticmethod
@@ -18,6 +19,7 @@ class OrientacionService:
     def actualizar(id: int, orientacion: Orientacion) -> Orientacion:
         orientacion_existente = OrientacionRepository.buscar_por_id(id)
         if not orientacion_existente:
+            # pyrefly: ignore  # bad-return
             return None
         orientacion_existente.nombre = orientacion.nombre
         orientacion_existente.especialidad_id = orientacion.especialidad_id

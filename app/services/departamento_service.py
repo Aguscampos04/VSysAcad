@@ -9,6 +9,7 @@ class DepartamentoService:
 
     @staticmethod
     def buscar_por_id(id: int) -> Departamento:
+        # pyrefly: ignore  # bad-return
         return DepartamentoRepository.buscar_por_id(id)
 
     @staticmethod
@@ -19,6 +20,7 @@ class DepartamentoService:
     def actualizar(id: int, departamento: Departamento) -> Departamento:
         departamento_existente = DepartamentoRepository.buscar_por_id(id)
         if not departamento_existente:
+            # pyrefly: ignore  # bad-return
             return None
         departamento_existente.nombre = departamento.nombre
         return departamento_existente

@@ -9,6 +9,7 @@ class FacultadService:
     
     @staticmethod
     def buscar_por_id(id: int) -> Facultad:
+        # pyrefly: ignore  # bad-return
         return FacultadRepository.buscar_por_id(id)
     
     @staticmethod
@@ -19,6 +20,7 @@ class FacultadService:
     def actualizar(id: int, facultad: Facultad) -> Facultad:
         facultad_existente = FacultadRepository.buscar_por_id(id)
         if not facultad_existente:
+            # pyrefly: ignore  # bad-return
             return None
         facultad_existente.nombre = facultad.nombre
         facultad_existente.abreviatura = facultad.abreviatura

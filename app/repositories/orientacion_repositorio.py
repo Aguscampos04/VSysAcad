@@ -19,6 +19,7 @@ class OrientacionRepository:
     def actualizar(orientacion) -> Orientacion:
         orientacion_existente = db.session.merge(orientacion)
         if not orientacion_existente:
+            # pyrefly: ignore  # bad-return
             return None
         return orientacion_existente
     

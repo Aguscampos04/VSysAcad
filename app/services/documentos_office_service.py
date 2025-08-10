@@ -17,16 +17,19 @@ class Document(ABC):
 class PDFDocument(Document):
 
     @staticmethod
+    # pyrefly: ignore  # bad-override
     def generar(carpeta: str, plantilla: str, context: dict) ->BytesIO:
         html_string = render_template(f'{carpeta}/{plantilla}.html', 
                                 context=context)        #context[] para usar en el template
         
         base_url = url_for('static', filename='', _external=True)
         bytes_data = HTML(string=html_string, base_url=base_url).write_pdf()
+        # pyrefly: ignore  # bad-argument-type
         pdf_io = BytesIO(bytes_data)        
         return pdf_io
 
 class ODTDocument(Document):
+    # pyrefly: ignore  # bad-override
     def generar(carpeta: str, plantilla: str, context: dict) ->BytesIO:
         odt_renderer = get_odt_renderer(media_path=url_for('static', filename='media'))
         path_template = os.path.join(current_app.root_path, f'{carpeta}', f'{plantilla}.odt')
@@ -49,6 +52,7 @@ class ODTDocument(Document):
         return odt_io
     
 class DOCXDocument(Document):
+    # pyrefly: ignore  # bad-override
     def generar(carpeta: str, plantilla: str, context: dict) ->BytesIO:
         
         path_template = os.path.join(current_app.root_path, f'{carpeta}', f'{plantilla}.docx')
@@ -76,4 +80,5 @@ def obtener_tipo_documento(tipo:str) -> Document:
         'odt': ODTDocument,
         'docx': DOCXDocument
     }
+    # pyrefly: ignore  # bad-return
     return tipos.get(tipo)

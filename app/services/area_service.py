@@ -8,6 +8,7 @@ class AreaService:
     
     @staticmethod
     def buscar_por_id(id: int) -> Area:
+       # pyrefly: ignore  # bad-return
        return AreaRepository.buscar_por_id(id)
     
     @staticmethod
@@ -18,6 +19,7 @@ class AreaService:
     def actualizar(id: int, area: Area) -> Area:
         area_existente = AreaRepository.buscar_por_id(id)
         if not area_existente:
+            # pyrefly: ignore  # bad-return
             return None
         area_existente.nombre = area.nombre
         return area_existente
