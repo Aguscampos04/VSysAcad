@@ -1,6 +1,6 @@
 from flask import jsonify, Blueprint, request
 
-from app.mapping.tipo_especialidad_mapping import TipoEspecialidadMapping
+from app.mapping.tipoespecialidad_mapping import TipoEspecialidadMapping
 from app.services.tipoespecialidad_service import TipoEspecialidadService
 
 tipo_especialidad_bp = Blueprint('tipo_especialidad', __name__)
@@ -21,6 +21,12 @@ def crear():
     tipo_especialidad = tipo_especialidad_mapping.load(request.get_json())
     TipoEspecialidadService.crear(tipo_especialidad) 
     return jsonify("Tipo Especialidad creado exitosamente"), 200
+
+@tipo_especialidad_bp.route('/tipo_especialidad/<int:id>', methods=['PUT'])
+def actualizar(id):
+    tipo_especialidad = tipo_especialidad_mapping.load(request.get_json())
+    TipoEspecialidadService.actualizar(id, tipo_especialidad)# type: ignore
+    return jsonify("Tipo Especialidad actualizado exitosamente"), 200
 
 @tipo_especialidad_bp.route('/tipo_especialidad/<int:id>', methods=['DELETE'])
 def borrar_por_id(id):

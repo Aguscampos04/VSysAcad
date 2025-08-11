@@ -22,6 +22,12 @@ def crear():
     PlanService.crear(plan) 
     return jsonify("Plan creado exitosamente"), 200
 
+@plan_bp.route('/plan/<int:id>', methods=['PUT'])
+def actualizar_por_id(id):
+    plan = plan_mapping.load(request.get_json())
+    PlanService.actualizar(id, plan) #type: ignore
+    return jsonify("Plan actualizado exitosamente"), 200
+
 @plan_bp.route('/plan/<int:id>', methods=['DELETE'])
 def borrar_por_id(id):
     PlanService.borrar_por_id(id)

@@ -9,7 +9,6 @@ class Autoridad(db.Model):
 
     id: int = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nombre: str = db.Column(db.String(100), nullable=False)
-    #TODO str o int?
     telefono: str = db.Column(db.String(20), nullable=True)
     email: str = db.Column(db.String(100), nullable=True)
 

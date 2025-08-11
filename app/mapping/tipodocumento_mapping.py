@@ -2,7 +2,7 @@ from marshmallow import fields, Schema, post_load, validate
 from app.models import TipoDocumento
 
 class TipoDocumentoMapping(Schema):
-    id = fields.Integer()
+    id = fields.Integer(dump_only=True)
     # pyrefly: ignore  # bad-argument-type
     dni = fields.Integer(required=True, validate=validate.Range(min=1000000, max=99999999))
     # pyrefly: ignore  # bad-argument-type
