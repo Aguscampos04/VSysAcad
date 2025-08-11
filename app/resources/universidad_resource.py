@@ -19,16 +19,19 @@ def buscar_por_id(id):
 @universidad_bp.route('/universidad', methods=['POST'])
 def crear():
     universidad = universidad_mapping.load(request.get_json())
-    UniversidadService.crear(universidad) 
+    UniversidadService.crear(universidad) # type: ignore
     return jsonify("Universidad creada exitosamente"), 200
+
+@universidad_bp.route('/universidad/<hashid:id>', methods=['PUT'])
+def actualizar(id):
+    universidad = universidad_mapping.load(request.get_json())
+    UniversidadService.actualizar(id, universidad) # type: ignore
+    return jsonify("Universidad actualizada exitosamente"), 200
 
 @universidad_bp.route('/universidad/<hashid:id>', methods=['DELETE'])
 def borrar_por_id(id):
     UniversidadService.borrar_por_id(id)
     return jsonify("Universidad borrada exitosamente"), 200
 
-@universidad_bp.route('/universidad/<hashid:id>', methods=['PUT'])
-def actualizar(id):
-    universidad = universidad_mapping.load(request.get_json())
-    UniversidadService.actualizar(id, universidad)
-    return jsonify("Universidad actualizada exitosamente"), 200
+
+#TODO preguntar al profe porq no anda los actualizar de todos los resources y si sacamos el type aparece como error

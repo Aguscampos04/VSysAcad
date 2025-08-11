@@ -6,5 +6,6 @@ from .categoriacargo_mapping import CategoriaCargoMapping
 from .grupo_mapping import GrupoMapping
 from .grado_mapping import GradoMapping
 from .departamento_mapping import DepartamentoMapping
-from .tipo_especialidad_mapping import TipoEspecialidadMapping
+from .tipoespecialidad_mapping import TipoEspecialidadMapping
 from .plan_mapping import PlanMapping
+from .cargo_mapping import CargoMapping

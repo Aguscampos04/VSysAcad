@@ -13,7 +13,6 @@ class Facultad(db.Model):
     codigopostal: str = db.Column(db.String(10), nullable=True)
     ciudad: str = db.Column(db.String(50), nullable=True)
     domicilio: str = db.Column(db.String(100), nullable=True)
-    #TODO telefono int o str?
     telefono: str = db.Column(db.String(20), nullable=True)
     contacto: str = db.Column(db.String(100), nullable=True)
     email: str = db.Column(db.String(100), nullable=False)

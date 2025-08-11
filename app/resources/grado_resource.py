@@ -22,9 +22,14 @@ def buscar_por_id(id):
 @grado_bp.route('/grado', methods=['POST'])
 def crear():
     grado = grado_mapping.load(request.get_json())
-    GradoService.crear(grado)
+    GradoService.crear(grado) # type: ignore
     return jsonify("Grado creado exitosamente"), 200
 
+@grado_bp.route('/grado/<int:id>', methods=['PUT'])
+def actualizar(id):
+    grado = grado_mapping.load(request.get_json())
+    GradoService.actualizar(id, grado) #type: ignore
+    return jsonify("Grado actualizado exitosamente"), 200
 
 @grado_bp.route('/grado/<int:id>', methods=['DELETE'])
 def borrar_por_id(id):

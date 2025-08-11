@@ -22,6 +22,12 @@ def crear():
     TipoDocumentoService.crear(tipodocumento) 
     return jsonify("Tipodocumento creada exitosamente"), 200
 
+@tipodocumento_bp.route('/tipodocumento/<int:id>', methods=['PUT'])
+def actualizar(id):
+    tipodocumento = tipodocumento_mapping.load(request.get_json())
+    TipoDocumentoService.actualizar(id, tipodocumento)#type: ignore
+    return jsonify("Tipodocumento actualizado exitosamente"), 200
+
 @tipodocumento_bp.route('/tipodocumento/<int:id>', methods=['DELETE'])
 def borrar_por_id(id):
     TipoDocumentoService.borrar_por_id(id)

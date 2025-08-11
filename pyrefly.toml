@@ -1,12 +1,5 @@
 project-includes = [
-    'app\services/**\*',
-    'app\mapping/**\*',
-    'app\repositories/**\*',
-    'test\instancias.py/**\*',
-    'test\test_autoridad.py/**\*',
-    'test\test_resourceuniversidad.py/**\*',
-    'test\test_facultad.py/**\*',
-    'test\test_materia.py/**\*',
-    'test\test_tipoespecialidad.py/**\*',
+    "app/**/*.py",
+    "test/**/*.py",
 ]
 project-excludes = ['C:\Users\agust\Escritorio\proyectodess\flask-sysacad\**\*venv\**\*']

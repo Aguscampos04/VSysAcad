@@ -3,7 +3,7 @@ from app.models import Departamento
 
 
 class DepartamentoMapping(Schema):
-    id = fields.Integer()
+    id = fields.Integer(dump_only=True)
     nombre = fields.String(
         # pyrefly: ignore  # bad-argument-type
         required=True, validate=validate.Length(min=1, max=50))
