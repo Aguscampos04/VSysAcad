@@ -24,7 +24,7 @@ def crear():
 
 @area_bp.route('/area/<int:id>', methods=['PUT'])
 def actualizar(id):
-    area = area_mapping.load(request.get_json())
+    area = area_mapping.load(request.get_json(), many=False)
     AreaService.actualizar(id, area) #type: ignore
     return jsonify("Area actualizado exitosamente"), 200
 
