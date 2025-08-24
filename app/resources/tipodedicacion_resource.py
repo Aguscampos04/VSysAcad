@@ -25,7 +25,7 @@ def crear():
 @tipodedicacion_bp.route('/tipodedicacion/<int:id>', methods=['PUT'])
 def actualizar(id):
     tipodedicacion = tipodedicacion_mapping.load(request.get_json())
-    TipoDedicacionService.actualizar(id, tipodedicacion)# type: ignore
+    TipoDedicacionService.actualizar(id, tipodedicacion)
     return jsonify("Tipo dedicación actualizado exitosamente"), 200
 
 @tipodedicacion_bp.route('/tipodedicacion/<int:id>', methods=['DELETE'])

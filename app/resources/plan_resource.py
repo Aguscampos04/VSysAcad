@@ -25,7 +25,7 @@ def crear():
 @plan_bp.route('/plan/<int:id>', methods=['PUT'])
 def actualizar_por_id(id):
     plan = plan_mapping.load(request.get_json())
-    PlanService.actualizar(id, plan) #type: ignore
+    PlanService.actualizar(id, plan) 
     return jsonify("Plan actualizado exitosamente"), 200
 
 @plan_bp.route('/plan/<int:id>', methods=['DELETE'])

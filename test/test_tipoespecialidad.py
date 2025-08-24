@@ -27,7 +27,6 @@ class TipoEspecialidadTestCase(unittest.TestCase):
         self.assertIsNotNone(tipoespecialidad.id)
         self.assertGreaterEqual(tipoespecialidad.id, 1)    
         self.assertEqual(tipoespecialidad.nombre, "Cardiologia")
-        # pyrefly: ignore  # missing-attribute
         self.assertEqual(tipoespecialidad.nivel, "Avanzado")
 
     def test_buscar_por_id(self):
@@ -46,11 +45,9 @@ class TipoEspecialidadTestCase(unittest.TestCase):
     def test_actualizar(self):
         tipoespecialidad = nuevotipoespecialidad()
         tipoespecialidad.nombre = "Neurología"
-        # pyrefly: ignore  # missing-attribute
         tipoespecialidad.nivel = "Intermedio"
         tipoespecialidad_actualizado = TipoEspecialidadService.actualizar(tipoespecialidad.id, tipoespecialidad)
         self.assertEqual(tipoespecialidad_actualizado.nombre, "Neurología")
-        # pyrefly: ignore  # missing-attribute
         self.assertEqual(tipoespecialidad_actualizado.nivel, "Intermedio")
 
     def test_borrar(self):

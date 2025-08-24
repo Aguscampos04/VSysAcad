@@ -21,7 +21,6 @@ class MateriaTestCase(unittest.TestCase):
         materia = nuevamateria(autoridades=[autoridad])
         self.assertIsNotNone(materia.id)
         self.assertEqual(materia.nombre, "Matematica")
-        # pyrefly: ignore  # bad-argument-type
         self.assertIn(autoridad, materia.autoridades)
 
     def test_buscar_por_id(self):
@@ -60,11 +59,9 @@ class MateriaTestCase(unittest.TestCase):
         # Asociar autoridad
         MateriaService.asociar_autoridad(materia.id, autoridad.id)
         materia_actualizada = MateriaService.buscar_por_id(materia.id)
-        # pyrefly: ignore  # bad-argument-type
         self.assertIn(autoridad, materia_actualizada.autoridades)
         
         # Desasociar autoridad
         MateriaService.desasociar_autoridad(materia.id, autoridad.id)
         materia_actualizada = MateriaService.buscar_por_id(materia.id)
-        # pyrefly: ignore  # bad-argument-type
         self.assertNotIn(autoridad, materia_actualizada.autoridades)

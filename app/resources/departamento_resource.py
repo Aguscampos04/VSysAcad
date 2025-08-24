@@ -28,7 +28,7 @@ def crear():
 @departamento_bp.route('/departamento/<int:id>', methods=['PUT'])
 def actualizar(id):
     departamento = departamento_mapping.load(request.get_json())
-    DepartamentoService.actualizar(id, departamento) #type: ignore
+    DepartamentoService.actualizar(id, departamento) 
     return jsonify("Departamento actualizado exitosamente"), 200
 
 

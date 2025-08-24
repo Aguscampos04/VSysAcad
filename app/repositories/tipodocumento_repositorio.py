@@ -20,7 +20,6 @@ class TipoDocumentoRepository:
     def actualizar(tipodocumento) -> TipoDocumento:
         tipodocumento_existente = db.session.merge(tipodocumento)
         if not tipodocumento_existente:
-            # pyrefly: ignore  # bad-return
             return None
         return tipodocumento_existente
     

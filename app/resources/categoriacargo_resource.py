@@ -25,7 +25,7 @@ def crear():
 @categoriacargo_bp.route('/categoriacargo/<int:id>', methods=['PUT'])
 def actualizar(id):
     categoriacargo = categoriacargo_mapping.load(request.get_json())
-    CategoriaCargoService.actualizar(id, categoriacargo) #type: ignore
+    CategoriaCargoService.actualizar(id, categoriacargo) 
     return jsonify("Categoria cargo actualizado exitosamente"), 200
 
 @categoriacargo_bp.route('/categoriacargo/<int:id>', methods=['DELETE'])

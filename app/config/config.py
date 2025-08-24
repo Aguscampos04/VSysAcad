@@ -48,5 +48,5 @@ def factory(app: str) -> Config:
         'production': ProductionConfig
     }
     
-    return configuration[app] #type: ignore
-    #TODO preguntar porq aparecen errores en donde tengo type
+    return configuration[app] 
+  
