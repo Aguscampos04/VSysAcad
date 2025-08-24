@@ -25,7 +25,7 @@ def crear():
 @tipo_especialidad_bp.route('/tipo_especialidad/<int:id>', methods=['PUT'])
 def actualizar(id):
     tipo_especialidad = tipo_especialidad_mapping.load(request.get_json())
-    TipoEspecialidadService.actualizar(id, tipo_especialidad)# type: ignore
+    TipoEspecialidadService.actualizar(id, tipo_especialidad)
     return jsonify("Tipo Especialidad actualizado exitosamente"), 200
 
 @tipo_especialidad_bp.route('/tipo_especialidad/<int:id>', methods=['DELETE'])

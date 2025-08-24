@@ -19,7 +19,6 @@ class MateriaRepository:
     def actualizar(materia) -> Materia:
         materia_existente = db.session.merge(materia)
         if not materia_existente:
-            # pyrefly: ignore  # bad-return
             return None
         return materia_existente
 

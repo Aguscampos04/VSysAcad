@@ -25,7 +25,7 @@ def crear():
 @grupo_bp.route('/grupo/<int:id>', methods=['PUT'])
 def actualizar(id):
     grupo = grupo_mapping.load(request.get_json())
-    GrupoService.actualizar(id, grupo) #type: ignore
+    GrupoService.actualizar(id, grupo)
     return jsonify("Grupo actualizado exitosamente"), 200
 
 @grupo_bp.route('/grupo/<int:id>', methods=['DELETE'])

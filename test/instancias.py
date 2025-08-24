@@ -38,9 +38,7 @@ def nuevocargo(nombre="Profesor", puntos=10, categoria_cargo=None, tipo_dedicaci
     cargo = Cargo()
     cargo.nombre = nombre
     cargo.puntos = puntos
-    # pyrefly: ignore  # bad-assignment
     cargo.categoria_cargo = categoria_cargo or nuevacategoriacargo()
-    # pyrefly: ignore  # bad-assignment
     cargo.tipo_dedicacion = tipo_dedicacion or nuevotipodedicacion()
     CargoService.crear(cargo)
     return cargo
@@ -63,7 +61,6 @@ def nuevafacultad(nombre="Facultad de Ciencias", abreviatura="FCC", directorio="
 
     if autoridades is None:
         autoridades = []
-    # pyrefly: ignore  # bad-assignment
     facultad.autoridades = autoridades
 
     FacultadService.crear(facultad)
@@ -84,7 +81,6 @@ def nuevaarea(nombre="Matematica"):
 def nuevotipoespecialidad(nombre="Cardiologia", nivel="Avanzado"):
     tipo = TipoEspecialidad()
     tipo.nombre = nombre
-    # pyrefly: ignore  # missing-attribute
     tipo.nivel = nivel
     TipoEspecialidadService.crear(tipo)
     return tipo
@@ -94,7 +90,6 @@ def nuevaespecialidad(nombre="Matematicas", letra="A", observacion="Observacion 
     esp.nombre = nombre
     esp.letra = letra
     esp.observacion = observacion
-    # pyrefly: ignore  # bad-assignment
     esp.tipoespecialidad = tipoespecialidad or nuevotipoespecialidad()
     EspecialidadService.crear(esp)
     return esp
@@ -116,7 +111,6 @@ def nuevamateria(nombre="Matematica", codigo="MAT101", observacion="Observacion 
 
     if autoridades is None:
         autoridades = []  
-    # pyrefly: ignore  # bad-assignment
     materia.autoridades = autoridades
     
     MateriaService.crear(materia)
@@ -125,11 +119,8 @@ def nuevamateria(nombre="Matematica", codigo="MAT101", observacion="Observacion 
 def nuevaorientacion(nombre="Orientacion 1", especialidad=None, plan=None, materia=None):
     orientacion = Orientacion()
     orientacion.nombre = nombre
-    # pyrefly: ignore  # bad-assignment
     orientacion.especialidad = especialidad or nuevaespecialidad()
-    # pyrefly: ignore  # bad-assignment
     orientacion.plan = plan or nuevoplan()
-    # pyrefly: ignore  # bad-assignment
     orientacion.materia = materia or nuevamateria()
     OrientacionService.crear(orientacion)
     return orientacion
@@ -160,7 +151,6 @@ def nuevoalumno(nombre="Juan", apellido="Pérez", nrodocumento="46291002", tipo_
     alumno.nombre = nombre
     alumno.apellido = apellido
     alumno.nrodocumento = nrodocumento
-    # pyrefly: ignore  # bad-assignment
     alumno.tipo_documento = tipo_documento or nuevotipodocumento()
     alumno.fecha_nacimiento = fecha_nacimiento
     alumno.sexo = sexo
@@ -173,19 +163,16 @@ def nuevaautoridad(nombre="Pelo", cargo=None, telefono="123456789", email="123@g
                    materias=None, facultades=None):
     autoridad = Autoridad()
     autoridad.nombre = nombre
-    # pyrefly: ignore  # bad-assignment
     autoridad.cargo = cargo or nuevocargo()
     autoridad.telefono = telefono
     autoridad.email = email
 
     if materias is None:
         materias = []
-    # pyrefly: ignore  # bad-assignment
     autoridad.materias = materias
 
     if facultades is None:
         facultades = []
-    # pyrefly: ignore  # bad-assignment
     autoridad.facultades = facultades
     
     AutoridadService.crear(autoridad)

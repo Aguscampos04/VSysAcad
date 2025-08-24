@@ -8,7 +8,6 @@ class GrupoService:
 
     @staticmethod
     def buscar_por_id(id: int) -> Grupo:
-        # pyrefly: ignore  # bad-return
         return GrupoRepository.buscar_por_id(id)
 
     @staticmethod
@@ -19,7 +18,6 @@ class GrupoService:
     def actualizar(id: int, grupo: Grupo) -> Grupo:
         grupo_existente = GrupoRepository.buscar_por_id(id)
         if not grupo_existente:
-            # pyrefly: ignore  # bad-return
             return None
         grupo_existente.nombre = grupo.nombre
         return grupo_existente
