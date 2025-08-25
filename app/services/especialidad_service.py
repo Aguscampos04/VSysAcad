@@ -25,7 +25,7 @@ class EspecialidadService:
         especialidad_existente.observacion = especialidad.obsevacion
         especialidad_existente.tipoespecialidad = especialidad.tipoespecialidad
         especialidad_existente.facultad = especialidad.facultad
-        return especialidad_existente
+        return EspecialidadRepository.actualizar(especialidad_existente)
     
     @staticmethod
     def borrar_por_id(id: int) -> bool:

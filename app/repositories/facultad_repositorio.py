@@ -18,10 +18,9 @@ class FacultadRepository:
     
     @staticmethod
     def actualizar(facultad) -> Facultad:
-        facultad_existente = db.session.merge(facultad)
-        if not facultad_existente:
-            return None
-        return facultad_existente
+        db.session.merge(facultad)
+        db.session.commit()
+        return facultad
     
     @staticmethod
     def borrar_por_id(id: int) -> bool:

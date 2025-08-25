@@ -24,7 +24,7 @@ class TipoDocumentoService:
         tipodocumento_existente.libreta_civica = tipodocumento.libreta_civica
         tipodocumento_existente.libreta_enrolamiento = tipodocumento.libreta_enrolamiento
         tipodocumento_existente.pasaporte = tipodocumento.pasaporte
-        return tipodocumento_existente
+        return TipoDocumentoRepository.actualizar(tipodocumento_existente)
     
     @staticmethod
     def borrar_por_id(id: int) -> bool:

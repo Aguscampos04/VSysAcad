@@ -17,10 +17,9 @@ class MateriaRepository:
 
     @staticmethod
     def actualizar(materia) -> Materia:
-        materia_existente = db.session.merge(materia)
-        if not materia_existente:
-            return None
-        return materia_existente
+        db.session.merge(materia)
+        db.session.commit()
+        return materia
 
     @staticmethod
     def borrar_por_id(id: int) -> bool:

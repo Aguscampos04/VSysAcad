@@ -23,7 +23,7 @@ class OrientacionService:
         orientacion_existente.especialidad_id = orientacion.especialidad_id
         orientacion_existente.plan = orientacion.plan
         orientacion_existente.materia = orientacion.materia
-        return orientacion_existente
+        return OrientacionRepository.actualizar(orientacion_existente)
     
     @staticmethod
     def borrar_por_id(id: int) -> bool:

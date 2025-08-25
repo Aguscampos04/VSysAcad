@@ -20,7 +20,7 @@ class AreaService:
         if not area_existente:
             return None
         area_existente.nombre = area.nombre
-        return area_existente
+        return AreaRepository.actualizar(area_existente)
     
     @staticmethod
     def borrar_por_id(id: int) -> bool:

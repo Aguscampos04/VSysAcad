@@ -21,7 +21,7 @@ class CategoriaCargoService:
         if not categoria_existente:
             return None
         categoria_existente.nombre = tipodocumento.nombre
-        return categoria_existente
+        return CategoriaCargoRepository.actualizar(categoria_existente)
     
     @staticmethod
     def borrar_por_id(id: int) -> bool:

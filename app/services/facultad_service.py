@@ -31,7 +31,7 @@ class FacultadService:
         facultad_existente.contacto = facultad.contact
         facultad_existente.email = facultad.email
         facultad_existente.universidad = facultad.universidad
-        return facultad_existente
+        return FacultadRepository.actualizar(facultad_existente)
     
     @staticmethod
     def borrar_por_id(id: int) -> bool:

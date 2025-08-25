@@ -19,10 +19,9 @@ class CargoRepository:
     
     @staticmethod
     def actualizar(cargo) -> Cargo:
-        Cargo_existente = db.session.merge(cargo)
-        if not Cargo_existente:
-            return None
-        return Cargo_existente
+        db.session.merge(cargo)
+        db.session.commit()
+        return cargo
     
     @staticmethod
     def borrar_por_id(id: int) -> bool:

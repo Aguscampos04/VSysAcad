@@ -22,7 +22,7 @@ class MateriaService:
         materia_existente.nombre = materia.nombre
         materia_existente.codigo = materia.codigo
         materia_existente.observacion = materia.observacion
-        return materia_existente
+        return MateriaRepository.actualizar(materia_existente)
 
     @staticmethod
     def borrar_por_id(id: int) -> bool:

@@ -21,7 +21,7 @@ class DepartamentoService:
         if not departamento_existente:
             return None
         departamento_existente.nombre = departamento.nombre
-        return departamento_existente
+        return DepartamentoRepository.actualizar(departamento_existente)
     
     @staticmethod
     def borrar_por_id(id: int) -> bool:

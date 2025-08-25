@@ -20,7 +20,7 @@ class GrupoService:
         if not grupo_existente:
             return None
         grupo_existente.nombre = grupo.nombre
-        return grupo_existente
+        return GrupoRepository.actualizar(grupo_existente)
     
     @staticmethod
     def borrar_por_id(id: int) -> bool:
