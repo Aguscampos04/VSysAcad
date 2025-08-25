@@ -27,7 +27,7 @@
 - **`boot.ps1`** → Scripts de inicio (no nos funciona, intentamos pero se nos desinstala visual).  
 - **`install.ps1`** → Scripts para instalar librerias y preparar el entorno.  
 
-## PASOS PARA INCIAR LA APP:
+## Pasos para iniciar la app:
 1-crear entorno virtual (se entra mediante 'venv\Scripts\Activate.ps1')
 2-instalar las librerias al entorno virtual (esta en requirements txt o ejecutando install.ps1)
 3-crear las tablas en la base de datos mediante flask-migrate, PRIMERO: flask db init (se crea carpeta migrations),SEGUNDO: flask db migrate -m "crear tabla usuario"
@@ -36,7 +36,7 @@ TERCERO: flask db upgrade
 5- insertar datos en las tablas mediante CREATE
 6-probar mediante request en postman los CRUD
 
-## rutas para request:
+## Rutas para request:
 
 CREATE: 'http://localhost:5000/api/v1/modelo'
 READ (ID): 'http://localhost:5000/api/v1/modelo/ID'
