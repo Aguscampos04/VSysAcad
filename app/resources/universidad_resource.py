@@ -14,7 +14,10 @@ def buscar_todos():
 @universidad_bp.route('/universidad/<hashid:id>', methods=['GET'])
 def buscar_por_id(id):
     universidad = UniversidadService.buscar_por_id(id)
+    if not universidad:
+        return {"message": "Universidad no encontrada"}, 404
     return universidad_mapping.dump(universidad), 200
+
 
 @universidad_bp.route('/universidad', methods=['POST'])
 def crear():
