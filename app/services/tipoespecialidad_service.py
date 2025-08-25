@@ -22,7 +22,7 @@ class TipoEspecialidadService:
         if not tipoespecialidad_existente:
             return None
         tipoespecialidad_existente.nombre = tipoespecialidad.nombre
-        return tipoespecialidad_existente
+        return TipoEspecialidadRepository.actualizar(tipoespecialidad_existente)
     
 
     @staticmethod

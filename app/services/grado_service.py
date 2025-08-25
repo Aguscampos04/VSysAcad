@@ -23,7 +23,7 @@ class GradoService:
             return None
         grado_existente.nombre = grado.nombre
         grado_existente.descripcion = grado.descripcion
-        return grado_existente
+        return GradoRepository.actualizar(grado_existente)
 
     @staticmethod
     def borrar_por_id(id: int) -> bool:

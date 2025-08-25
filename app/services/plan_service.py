@@ -22,7 +22,7 @@ class PlanService:
         plan_existente.fecha_inicio = plan.fecha_inicio
         plan_existente.fecha_fin = plan.fecha_fin
         plan_existente.observacion = plan.observacion
-        return plan_existente
+        return PlanRepository.actualizar(plan_existente)
     
     @staticmethod
     def borrar_por_id(id: int) -> bool:

@@ -23,7 +23,7 @@ class AutoridadService:
         autoridad_existente.nombre = autoridad.nombre
         autoridad_existente.telefono = autoridad.telefono
         autoridad_existente.email = autoridad.email
-        return autoridad_existente
+        return AutoridadRepository.actualizar(autoridad_existente)
 
     @staticmethod
     def borrar_por_id(id: int) -> bool:

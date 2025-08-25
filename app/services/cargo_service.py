@@ -24,7 +24,7 @@ class CargoService:
         cargo_existente.puntos = cargo.puntos
         cargo_existente.categoria_cargo = cargo.categoria_cargo
         cargo_existente.tipo_dedicacion = cargo.tipo_dedicacion
-        return cargo_existente
+        return CargoRepository.actualizar(cargo_existente)
         
     
     @staticmethod
