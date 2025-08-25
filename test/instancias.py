@@ -85,12 +85,13 @@ def nuevotipoespecialidad(nombre="Cardiologia", nivel="Avanzado"):
     TipoEspecialidadService.crear(tipo)
     return tipo
 
-def nuevaespecialidad(nombre="Matematicas", letra="A", observacion="Observacion de prueba", tipoespecialidad=None):
+def nuevaespecialidad(nombre="Matematicas", letra="A", observacion="Observacion de prueba", tipoespecialidad=None, facultad=None):
     esp = Especialidad()
     esp.nombre = nombre
     esp.letra = letra
     esp.observacion = observacion
     esp.tipoespecialidad = tipoespecialidad or nuevotipoespecialidad()
+    esp.facultad = facultad or nuevafacultad()
     EspecialidadService.crear(esp)
     return esp
 
@@ -146,7 +147,7 @@ def nuevogrupo(nombre="Grupo A"):
     return grupo
 
 def nuevoalumno(nombre="Juan", apellido="Pérez", nrodocumento="46291002", tipo_documento=None,
-                fecha_nacimiento=date(1990, 1, 1), sexo="M", nro_legajo=123456, fecha_ingreso=date(2020, 1, 1)):
+                fecha_nacimiento=date(1990, 1, 1), sexo="M", nro_legajo=123456, fecha_ingreso=date(2020, 1, 1),especialidad=None):
     alumno = Alumno()
     alumno.nombre = nombre
     alumno.apellido = apellido
@@ -156,6 +157,7 @@ def nuevoalumno(nombre="Juan", apellido="Pérez", nrodocumento="46291002", tipo_
     alumno.sexo = sexo
     alumno.nro_legajo = nro_legajo
     alumno.fecha_ingreso = fecha_ingreso
+    alumno.especialidad = especialidad or nuevaespecialidad()
     AlumnoService.crear(alumno)
     return alumno
 
