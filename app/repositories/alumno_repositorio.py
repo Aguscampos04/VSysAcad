@@ -2,6 +2,12 @@ from app import db
 from app.models import Alumno
 
 class AlumnoRepository:
+
+    @staticmethod
+    def encontrar_id(id):
+        encontrar = db.session.query(Alumno).filter_by(id=id).first()
+        return encontrar
+
     @staticmethod
     def crear(alumno):
         db.session.add(alumno)
@@ -9,7 +15,7 @@ class AlumnoRepository:
 
     @staticmethod
     def buscar_por_id(id: int):
-        return db.session.query(Alumno).filter_by(id=id).first()
+        return AlumnoRepository.encontrar_id(id)
     
     @staticmethod
     def buscar_todos():
@@ -23,7 +29,7 @@ class AlumnoRepository:
     
     @staticmethod
     def borrar_por_id(id: int) -> bool:
-        alumno = db.session.query(Alumno).filter_by(id=id).first()
+        alumno = AlumnoRepository.encontrar_id(id)
         if not alumno:
             return False
         db.session.delete(alumno)
