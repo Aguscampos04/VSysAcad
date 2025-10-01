@@ -11,7 +11,7 @@ def buscar_todos():
     cargos = CargoService.buscar_todos()
     return cargo_mapping.dump(cargos, many=True), 200
 
-@cargo_bp.route('/cargo/<int:id>', methods=['GET'])
+@cargo_bp.route('/cargo/<hashid:id>', methods=['GET'])
 def buscar_por_id(id):
     cargo = CargoService.buscar_por_id(id)
     return cargo_mapping.dump(cargo), 200
@@ -22,13 +22,13 @@ def crear():
     CargoService.crear(cargo)
     return jsonify("cargo creada exitosamente"), 200
 
-@cargo_bp.route('/cargo/<int:id>', methods=['PUT'])
+@cargo_bp.route('/cargo/<hashid:id>', methods=['PUT'])
 def actualizar(id):
     cargo = cargo_mapping.load(request.get_json())
     CargoService.actualizar(id, cargo) 
     return jsonify("Cargo actualizado exitosamente"), 200
 
-@cargo_bp.route('/cargo/<int:id>', methods=['DELETE'])
+@cargo_bp.route('/cargo/<hashid:id>', methods=['DELETE'])
 def borrar_por_id(id):
     CargoService.borrar_por_id(id)
     return jsonify("cargo borrada exitosamente"), 200

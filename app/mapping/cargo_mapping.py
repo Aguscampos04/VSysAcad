@@ -5,6 +5,7 @@ from app.mapping.tipodedicacion_mapping import TipoDedicacionMapping
 from app.repositories import CategoriaCargoRepository, TipoDedicacionRepository
 
 class CargoMapping(Schema):
+    hashid = fields.String(dump_only = True)
     id = fields.Integer(dump_only=True)
     nombre = fields.String(required=True, validate=validate.Length(min=1, max=50))
     puntos = fields.Integer(allow_none=True)
