@@ -11,7 +11,7 @@ def buscar_todos():
     tipo_dedicaciones= TipoDedicacionService.buscar_todos()
     return tipodedicacion_mapping.dump(tipo_dedicaciones, many=True), 200
 
-@tipodedicacion_bp.route('/tipodedicacion/<int:id>', methods=['GET'])
+@tipodedicacion_bp.route('/tipodedicacion/<hashid:id>', methods=['GET'])
 def buscar_por_id(id):
     tipo_dedicacion = TipoDedicacionService.buscar_por_id(id)
     return tipodedicacion_mapping.dump(tipo_dedicacion), 200
@@ -22,13 +22,14 @@ def crear():
     TipoDedicacionService.crear(tipodedicacion)
     return jsonify("Tipo dedicación creado exitosamente"), 200
 
-@tipodedicacion_bp.route('/tipodedicacion/<int:id>', methods=['PUT'])
+@tipodedicacion_bp.route('/tipodedicacion/<hashid:id>', methods=['PUT'])
 def actualizar(id):
     tipodedicacion = tipodedicacion_mapping.load(request.get_json())
     TipoDedicacionService.actualizar(id, tipodedicacion)
     return jsonify("Tipo dedicación actualizado exitosamente"), 200
 
-@tipodedicacion_bp.route('/tipodedicacion/<int:id>', methods=['DELETE'])
+@tipodedicacion_bp.route('/tipodedicacion/<hashid
+:id>', methods=['DELETE'])
 def borrar_por_id(id):
     TipoDedicacionService.borrar_por_id(id)
     return jsonify("Tipo dedicación borrado exitosamente"), 200
