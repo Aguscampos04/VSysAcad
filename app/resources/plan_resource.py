@@ -11,7 +11,7 @@ def buscar_todos():
     planes = PlanService.buscar_todos()
     return plan_mapping.dump(planes, many=True), 200
 
-@plan_bp.route('/plan/<int:id>', methods=['GET'])
+@plan_bp.route('/plan/<hashid:id>', methods=['GET'])
 def buscar_por_id(id):
     plan = PlanService.buscar_por_id(id)
     return plan_mapping.dump(plan), 200
@@ -22,13 +22,13 @@ def crear():
     PlanService.crear(plan) 
     return jsonify("Plan creado exitosamente"), 200
 
-@plan_bp.route('/plan/<int:id>', methods=['PUT'])
+@plan_bp.route('/plan/<hashid:id>', methods=['PUT'])
 def actualizar_por_id(id):
     plan = plan_mapping.load(request.get_json())
     PlanService.actualizar(id, plan) 
     return jsonify("Plan actualizado exitosamente"), 200
 
-@plan_bp.route('/plan/<int:id>', methods=['DELETE'])
+@plan_bp.route('/plan/<hashid:id>', methods=['DELETE'])
 def borrar_por_id(id):
     PlanService.borrar_por_id(id)
     return jsonify("Plan borrado exitosamente"), 200
