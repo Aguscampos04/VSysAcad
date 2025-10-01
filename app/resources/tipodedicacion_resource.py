@@ -28,8 +28,7 @@ def actualizar(id):
     TipoDedicacionService.actualizar(id, tipodedicacion)
     return jsonify("Tipo dedicación actualizado exitosamente"), 200
 
-@tipodedicacion_bp.route('/tipodedicacion/<hashid
-:id>', methods=['DELETE'])
+@tipodedicacion_bp.route('/tipodedicacion/<hashid:id>', methods=['DELETE'])
 def borrar_por_id(id):
     TipoDedicacionService.borrar_por_id(id)
     return jsonify("Tipo dedicación borrado exitosamente"), 200

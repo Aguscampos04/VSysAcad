@@ -1,9 +1,10 @@
 from dataclasses import dataclass
 from app import db
+from flask_hashids import HashidMixin
 
 #TODO cambiar a sigal o nombre de libreta_civica, libreta_enrolamiento, pasaporte
 @dataclass(init=False, repr=True, eq=True)
-class TipoDocumento(db.Model):
+class TipoDocumento(HashidMixin,db.Model):
     __tablename__ = 'tipodocumentos'
     id: int = db.Column(db.Integer, primary_key=True, autoincrement=True)
     #sigla: porque pueden tener como L.C, L.E,  

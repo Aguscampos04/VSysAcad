@@ -11,7 +11,7 @@ def buscar_todos():
     tipodocumentos = TipoDocumentoService.buscar_todos()
     return tipodocumento_mapping.dump(tipodocumentos, many=True), 200
 
-@tipodocumento_bp.route('/tipodocumento/<int:id>', methods=['GET'])
+@tipodocumento_bp.route('/tipodocumento/<hashid:id>', methods=['GET'])
 def buscar_por_id(id):
     tipodocumento = TipoDocumentoService.buscar_por_id(id)
     return tipodocumento_mapping.dump(tipodocumento), 200
@@ -22,13 +22,13 @@ def crear():
     TipoDocumentoService.crear(tipodocumento) 
     return jsonify("Tipodocumento creada exitosamente"), 200
 
-@tipodocumento_bp.route('/tipodocumento/<int:id>', methods=['PUT'])
+@tipodocumento_bp.route('/tipodocumento/<hashid:id>', methods=['PUT'])
 def actualizar(id):
     tipodocumento = tipodocumento_mapping.load(request.get_json())
     TipoDocumentoService.actualizar(id, tipodocumento)
     return jsonify("Tipodocumento actualizado exitosamente"), 200
 
-@tipodocumento_bp.route('/tipodocumento/<int:id>', methods=['DELETE'])
+@tipodocumento_bp.route('/tipodocumento/<hashid:id>', methods=['DELETE'])
 def borrar_por_id(id):
     TipoDocumentoService.borrar_por_id(id)
     return jsonify("Tipodocumento borrada exitosamente"), 200
