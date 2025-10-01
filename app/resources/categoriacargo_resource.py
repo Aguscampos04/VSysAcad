@@ -11,7 +11,7 @@ def buscar_todos():
     categoriacargos = CategoriaCargoService.buscar_todos()
     return categoriacargo_mapping.dump(categoriacargos, many=True), 200
 
-@categoriacargo_bp.route('/categoriacargo/<int:id>', methods=['GET'])
+@categoriacargo_bp.route('/categoriacargo/<hashid:id>', methods=['GET'])
 def buscar_por_id(id):
     categoriacargo = CategoriaCargoService.buscar_por_id(id)
     return categoriacargo_mapping.dump(categoriacargo), 200
@@ -22,13 +22,13 @@ def crear():
     CategoriaCargoService.crear(categoriacargo)
     return jsonify("Categoria cargo creada exitosamente"), 200
 
-@categoriacargo_bp.route('/categoriacargo/<int:id>', methods=['PUT'])
+@categoriacargo_bp.route('/categoriacargo/<hashid:id>', methods=['PUT'])
 def actualizar(id):
     categoriacargo = categoriacargo_mapping.load(request.get_json())
     CategoriaCargoService.actualizar(id, categoriacargo) 
     return jsonify("Categoria cargo actualizado exitosamente"), 200
 
-@categoriacargo_bp.route('/categoriacargo/<int:id>', methods=['DELETE'])
+@categoriacargo_bp.route('/categoriacargo/<hashid:id>', methods=['DELETE'])
 def borrar_por_id(id):
     CategoriaCargoService.borrar_por_id(id)
     return jsonify("Categoria cargo borrada exitosamente"), 200
