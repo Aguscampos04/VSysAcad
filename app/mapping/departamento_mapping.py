@@ -4,7 +4,6 @@ from app.models import Departamento
 
 class DepartamentoMapping(Schema):
     hashid = fields.String(dump_only = True)
-    id = fields.Integer(dump_only=True)
     nombre = fields.String(
         required=True, validate=validate.Length(min=1, max=50))
 

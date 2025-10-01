@@ -25,10 +25,11 @@ def crear():
     DepartamentoService.crear(departamento)
     return jsonify("Departamento creado exitosamente"), 200
 
+
 @departamento_bp.route('/departamento/<hashid:id>', methods=['PUT'])
 def actualizar(id):
     departamento = departamento_mapping.load(request.get_json())
-    DepartamentoService.actualizar(id, departamento) 
+    DepartamentoService.actualizar(id, departamento)
     return jsonify("Departamento actualizado exitosamente"), 200
 
 
