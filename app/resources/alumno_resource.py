@@ -11,7 +11,7 @@ def buscar_todos():
     alumnos = AlumnoService.buscar_todos()
     return alumno_mapping.dump(alumnos, many=True), 200
 
-@alumno_bp.route('/alumno/<int:id>', methods=['GET'])
+@alumno_bp.route('/alumno/<hashid:id>', methods=['GET'])
 def buscar_por_id(id):
     alumno = AlumnoService.buscar_por_id(id)
     return alumno_mapping.dump(alumno), 200
@@ -22,13 +22,13 @@ def crear():
     AlumnoService.crear(alumno)
     return jsonify("Alumno creado exitosamente"), 200
 
-@alumno_bp.route('/alumno/<int:id>', methods=['PUT'])
+@alumno_bp.route('/alumno/<hashid:id>', methods=['PUT'])
 def actualizar(id):
     alumno = alumno_mapping.load(request.get_json())
     AlumnoService.actualizar(id, alumno)
     return jsonify("Alumno actualizado exitosamente"), 200
 
-@alumno_bp.route('/alumno/<int:id>', methods=['DELETE'])
+@alumno_bp.route('/alumno/<hashid:id>', methods=['DELETE'])
 def borrar_por_id(id):
     AlumnoService.borrar_por_id(id)
     return jsonify("Alumno borrado exitosamente"), 200
