@@ -11,7 +11,7 @@ def buscar_todos():
     orientaciones = OrientacionService.buscar_todos()
     return orientacion_mapping.dump(orientaciones, many=True), 200
 
-@orientacion_bp.route('/orientacion/<int:id>', methods=['GET'])
+@orientacion_bp.route('/orientacion/<hashid:id>', methods=['GET'])
 def buscar_por_id(id):
     orientacion = OrientacionService.buscar_por_id(id)
     return orientacion_mapping.dump(orientacion), 200
@@ -22,13 +22,13 @@ def crear():
     OrientacionService.crear(orientacion)
     return jsonify("Orientacion creada exitosamente"), 200
 
-@orientacion_bp.route('/orientacion/<int:id>', methods=['PUT'])
+@orientacion_bp.route('/orientacion/<hashid:id>', methods=['PUT'])
 def actualizar(id):
     orientacion = orientacion_mapping.load(request.get_json())
     OrientacionService.actualizar(id, orientacion)
     return jsonify("Orientacion actualizada exitosamente"), 200
 
-@orientacion_bp.route('/orientacion/<int:id>', methods=['DELETE'])
+@orientacion_bp.route('/orientacion/<hashid:id>', methods=['DELETE'])
 def borrar_por_id(id):
     OrientacionService.borrar_por_id(id)
     return jsonify("Orientacion borrada exitosamente"), 200

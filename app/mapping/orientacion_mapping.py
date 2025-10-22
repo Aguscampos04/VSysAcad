@@ -3,7 +3,7 @@ from app.models import Orientacion
 
 
 class OrientacionMapping(Schema):
-    id = fields.Integer(dump_only=True)
+    hashid = fields.Integer(dump_only=True)
     nombre = fields.String(required=True, validate=validate.Length(min=1, max=50))
 
     especialidad_id = fields.Integer(required=True)
