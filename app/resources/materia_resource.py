@@ -11,7 +11,7 @@ def buscar_todos():
     materias = MateriaService.buscar_todos()
     return materia_mapping.dump(materias, many=True), 200
 
-@materia_bp.route('/materia/<int:id>', methods=['GET'])
+@materia_bp.route('/materia/<hashid:id>', methods=['GET'])
 def buscar_por_id(id):
     materia = MateriaService.buscar_por_id(id)
     return materia_mapping.dump(materia), 200
@@ -22,13 +22,13 @@ def crear():
     MateriaService.crear(materia)
     return jsonify("Materia creada exitosamente"), 200
 
-@materia_bp.route('/materia/<int:id>', methods=['PUT'])
+@materia_bp.route('/materia/<hashid:id>', methods=['PUT'])
 def actualizar(id):
     materia = materia_mapping.load(request.get_json())
     MateriaService.actualizar(id, materia)
     return jsonify("Materia actualizada exitosamente"), 200
 
-@materia_bp.route('/materia/<int:id>', methods=['DELETE'])
+@materia_bp.route('/materia/<hashid:id>', methods=['DELETE'])
 def borrar_por_id(id):
     MateriaService.borrar_por_id(id)
     return jsonify("Materia borrada exitosamente"), 200
