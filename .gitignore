@@ -143,7 +143,5 @@ pyvenv.cfg
 migrations/
 
 weasy_test.pdf
-
-# docker
-Dockerfile
 /docker/
+Dockerfile

@@ -1,10 +1,12 @@
 services:
-    estructura:
+    backend:
         image: sysacad:v1.0.0
+        deploy:
+            replicas: 3
         networks:
-          - leared
-        ports:
-          - 5000:5000
+          - agusred
+        #ports:
+        #  - 5000:5000
         environment:
           - FLASK_CONTEXT=${FLASK_CONTEXT}
           - SQLALCHEMY_TRACK_MODIFICATIONS=${SQLALCHEMY_TRACK_MODIFICATIONS}  
@@ -16,6 +18,12 @@ services:
           - HASHIDS_SALT=${HASHIDS_SALT}
           - SECRET_KEY=${SECRET_KEY}
           - HASHIDS_MIN_LENGTH=${HASHIDS_MIN_LENGTH}
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.backend.rule=Host(`backend.universidad.localhost`)"
+            - "traefik.http.routers.backend.tls=true"
+            - "traefik.http.services.backend.loadbalancer.server.port=5000"
+            - "traefik.docker.network=agusred"     
 networks:
-    leared:
+    agusred:
         external: true
