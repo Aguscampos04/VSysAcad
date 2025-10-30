@@ -3,10 +3,12 @@ from app.models import Especialidad
 
 
 class EspecialidadMapping(Schema):
-    id = fields.Integer(dump_only=True)
-    nombre = fields.String(required=True, validate=validate.Length(min=1, max=100))
+    hashid = fields.String(dump_only=True)
+    nombre = fields.String(
+        required=True, validate=validate.Length(min=1, max=100))
     letra = fields.String(required=True, validate=validate.Length(equal=1))
-    observacion = fields.String(validate=validate.Length(max=255), allow_none=True)
+    observacion = fields.String(
+        validate=validate.Length(max=255), allow_none=True)
 
     tipoespecialidad_id = fields.Integer(required=True)
 

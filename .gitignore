@@ -144,3 +144,4 @@ migrations/
 
 weasy_test.pdf
 /docker/
+dockerfile

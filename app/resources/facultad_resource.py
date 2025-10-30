@@ -11,7 +11,7 @@ def buscar_todos():
     facultades = FacultadService.buscar_todos()
     return facultad_mapping.dump(facultades, many=True), 200
 
-@facultad_bp.route('/facultad/<int:id>', methods=['GET'])
+@facultad_bp.route('/facultad/<hashid:id>', methods=['GET'])
 def buscar_por_id(id):
     facultad = FacultadService.buscar_por_id(id)
     return facultad_mapping.dump(facultad), 200
@@ -22,13 +22,13 @@ def crear():
     FacultadService.crear(facultad)
     return jsonify("Facultad creada exitosamente"), 200
 
-@facultad_bp.route('/facultad/<int:id>', methods=['PUT'])
+@facultad_bp.route('/facultad/<hashid:id>', methods=['PUT'])
 def actualizar(id):
     facultad = facultad_mapping.load(request.get_json())
     FacultadService.actualizar(id, facultad)
     return jsonify("Facultad actualizada exitosamente"), 200
 
-@facultad_bp.route('/facultad/<int:id>', methods=['DELETE'])
+@facultad_bp.route('/facultad/<hashid:id>', methods=['DELETE'])
 def borrar_por_id(id):
     FacultadService.borrar_por_id(id)
     return jsonify("Facultad borrada exitosamente"), 200

@@ -2,9 +2,10 @@ from dataclasses import dataclass
 from app.models import Cargo
 from app.models.relations import autoridades_materias , facultades_autoridades
 from app import db
+from flask_hashids import HashidMixin
 
 @dataclass(init=False, repr=True, eq=True)
-class Autoridad(db.Model):
+class Autoridad(HashidMixin,db.Model):
     __tablename__ = "autoridades"
 
     id: int = db.Column(db.Integer, primary_key=True, autoincrement=True)
